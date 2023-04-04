@@ -15,65 +15,13 @@ var user1 = {
   birthday: "p",
   firstname: "p",
   lastname: "p",
+  
 };
 var users = {
   p: user1,
 };
 
 // constants for the game
-function SpaceShip(x, y, width, height) {
-  this.x = x;
-  this.y = y;
-  this.width = width;
-  this.height = height;
-  this.image = new Image();
-  // this.image.src = "images/ship.png";
-  this.draw = function () {
-    context.fillStyle = "red";
-    context.beginPath();
-
-    context.arc(
-      this.x + width / 2,
-      this.y + height / 2,
-      this.width / 60,
-      0,
-      2 * Math.PI,
-      false
-    );
-
-    context.fill();
-  };
-}
-function FriendlySpaceShip(x, y, width, height) {
-  this.numlife = 3;
-  SpaceShip.call(this, x, y, width, height);
-  //   this.image.src = "images/ship.png";
-  this.moveDown = function () {
-    this.y = Math.min(this.y + FRIENDLY_SPEED, floorY);
-  };
-  this.moveUp = function () {
-    this.y = Math.max(this.y - FRIENDLY_SPEED, topY);
-  };
-  this.moveLeft = function () {
-    this.x = Math.max(this.x - FRIENDLY_SPEED, 0);
-  };
-  this.moveRight = function () {
-    this.x = Math.min(this.x + FRIENDLY_SPEED, canvasWidth * 0.9);
-  };
-}
-
-function EnemySpaceShip(x, y, width, height) {
-  this.isAlive = true;
-  SpaceShip.call(this, x, y, width, height);
-  //   this.image.src = "images/enemy.png";
-  this.move = function () {
-    if (EnemyMove == "right") {
-      this.x = Math.min(this.x + ENEMY_SPEED, canvasWidth * 0.9);
-    } else if (EnemyMove == "left") {
-      this.x = Math.max(this.x - ENEMY_SPEED, 0);
-    }
-  };
-}
 
 //EnemySpaceShips
 var enemy_ships;
@@ -95,12 +43,20 @@ var UP_KEY = 38;
 var DOWN_KEY = 40;
 var FIRE_KEY = 32;
 
+var SCORE = 0;
+
+
 // constants for game play
 
-var TIME_INTERVAL = 10; // screen refresh interval in milliseconds
-var ENEMY_SPEED = 0.5; // Enemy speed multiplier
-var FRIENDLY_SPEED = 1; // Friendly speed multiplier
+var TIME_INTERVAL = 1; // screen refresh interval in milliseconds
+var ENEMY_SPEED = 0.05; // Enemy speed multiplier
+var FRIENDLY_SPEED = 3; // Friendly speed multiplier
+var FRIENDLY_FIRE_SPEED = 0.5;
+var EnemyFireSpeed = 0.5;
+var EnemyFireCount = 1;
+var EnemyFireARR;
 
+var FIRE_COUNT=3;
 // variables for the game loop and tracking statistics
 var intervalTimer; // holds interval timer
 var timerCount; // number of times the timer fired since the last second
@@ -145,6 +101,168 @@ var targetSound;
 var cannonSound;
 var blockerSound;
 
+
+function SpaceShip(x, y, width, height) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+  this.image = new Image();
+  // this.image.src = "images/ship.png";
+  
+}
+function FriendlySpaceShip(x, y, width, height) {
+  this.numlife = 3;
+  this.FIRE_ARR = [];
+  this.FireNum = 0;
+  SpaceShip.call(this, x, y, width, height);
+  //   this.image.src = "images/ship.png";
+  this.draw = function () {
+    context.fillStyle = "green";
+    context.beginPath();
+
+    context.arc(
+      this.x + width / 2,
+      this.y + height / 2,
+      this.width / 10,
+      0,
+      2 * Math.PI,
+      false
+    );
+    context.fill();
+    for(var i=0;i<this.FireNum;i++){
+      this.FIRE_ARR[i].draw();
+    }
+  };
+  this.moveDown = function () {
+    this.y = Math.min(this.y + FRIENDLY_SPEED, floorY);
+  };
+  this.moveUp = function () {
+    this.y = Math.max(this.y - FRIENDLY_SPEED, topY);
+  };
+  this.moveLeft = function () {
+    this.x = Math.max(this.x - FRIENDLY_SPEED, 0);
+  };
+  this.moveRight = function () {
+    this.x = Math.min(this.x + FRIENDLY_SPEED, canvasWidth * 0.9);
+  };
+  this.fire = function () {
+    FIRE_COUNT--;
+    this.FIRE_ARR.push(new FriendlyFire(this.x, this.y, this.width, this.height));
+    this.FireNum++;  
+  };
+  this.moveFiers = function () {
+    for(var i=0;i<this.FireNum;i++){
+      this.FIRE_ARR[i].move();
+    }
+  };
+}
+
+function EnemySpaceShip(x, y, width, height) {
+  this.isAlive = true;
+  SpaceShip.call(this, x, y, width, height);
+  //   this.image.src = "images/enemy.png";
+
+  this.draw = function () {
+    if(this.isAlive==false){
+      return;
+    }
+    context.fillStyle = "red";
+    context.beginPath();
+
+    context.arc(
+      this.x + width / 2,
+      this.y + height / 2,
+      this.width / 10,
+      0,
+      2 * Math.PI,
+      false
+    );
+    context.fill();
+  };
+  this.move = function () {
+    if (EnemyMove == "right") {
+      this.x = Math.min(this.x + ENEMY_SPEED, canvasWidth * 0.9);
+    } else if (EnemyMove == "left") {
+      this.x = Math.max(this.x - ENEMY_SPEED, 0);
+    }
+  };
+}
+
+
+
+function FriendlyFire(x, y, width, height) {
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+  this.draw = function () {
+    if(this.y<=-10){
+      friendly_ship.FIRE_ARR=friendly_ship.FIRE_ARR.filter((item)=>item!=this);
+          friendly_ship.FireNum--;
+          FIRE_COUNT++;
+    }
+    if(this.isAlive==false)return;
+    context.fillStyle = "yellow";
+    context.beginPath();
+    context.arc(
+      this.x + width / 2,
+      this.y + height / 2,
+      this.width / 10,
+      0,
+      2 * Math.PI,
+      false
+    );
+    context.fill();
+
+    for (let i = 0; i < NumRows; i++) {
+      for (let j = 0; j < NumCols; j++) {
+        if(enemy_ships[i][j].isAlive && Math.abs(enemy_ships[i][j].x-this.x)<10&&Math.abs(enemy_ships[i][j].y-this.y-10)<=10){
+          enemy_ships[i][j].isAlive=false;
+          friendly_ship.FIRE_ARR=friendly_ship.FIRE_ARR.filter((item)=>item!=this);
+          friendly_ship.FireNum--;
+          FIRE_COUNT++;
+          SCORE+=5*(4-i);
+          document.getElementById("Score").innerHTML="Score:"+SCORE;
+        } 
+        
+      }
+    }
+  };
+  this.move = function () {
+      this.y=Math.max(this.y-FRIENDLY_FIRE_SPEED,-100);
+  };
+}
+
+
+function EnemyFire(x, y, width, height){
+  this.x = x;
+  this.y = y;
+  this.width = width;
+  this.height = height;
+  this.final=false;
+  this.draw = function () {
+    if(Math.abs(friendly_ship.x-this.x)<10&&Math.abs(friendly_ship.y-this.y-10)<=10){
+      alert("boom!")
+    }
+    context.fillStyle = "black";
+    context.beginPath();
+    context.arc(
+      this.x + width / 2,
+      this.y + height / 2,
+      this.width / 10,
+      0,
+      2 * Math.PI,
+      false
+    );
+    context.fill();
+  };
+  this.move = function () {
+      this.y=Math.min(this.y+EnemyFireSpeed,canvasHeight+100);
+  };
+}
+
+
 // called when the app first launches
 function setupGame() {
   //menu buttons
@@ -167,6 +285,7 @@ function setupGame() {
     .addEventListener("click", sumbitSignUp);
 
   document.getElementById("startButton").addEventListener("click", newGame);
+  document.getElementById("stopButton").addEventListener("click", stopGame);
 
   document.addEventListener("keydown", function (event) {
     keyDownHandler(event);
@@ -194,13 +313,19 @@ function stopTimer() {
 // called by function newGame to scale the size of the game elements
 // relative to the size of the canvas before the game begins
 function resetElements() {
+  canvas.style.display="flex";
+  FIRE_COUNT=3;
+  SCORE=0;
+  EnemyFireCount=1;
+  EnemyFireARR=[];
   let w = canvas.width;
   let h = canvas.height;
   floorY = h * 0.8;
   topY = h * 0.6;
   canvasWidth = w;
   canvasHeight = h;
-
+  document.getElementById("Score").style.display="flex";
+  document.getElementById("Score").innerHTML="Score:"+SCORE;
   friendly_ship = new FriendlySpaceShip(
     WidthDistanceFactor * Math.random() * canvasWidth,
     floorY,
@@ -232,12 +357,52 @@ function newGame() {
 
   startTimer();
 } // end function newGame
+function stopGame() {
+  // set up the game
+
+  stopTimer();
+  document.getElementById("Score").style.display="none";
+  inGame = false;
+  if(canvas!=undefined){
+    canvas.style.display="none";
+  }
+} // end function newGame
 
 // called every TIME_INTERVAL milliseconds
 function updatePositions() {
   moveEnemyShips();
+  friendly_ship.moveFiers()
+  enemy_fire();
   draw(); // draw all elements at updated positions
 } // end function updatePositions
+
+function enemy_fire() {
+  let x_rand=Math.floor(Math.random()*NumCols);
+  let y_rand=Math.floor(Math.random()*NumRows);
+  for(let i=0;i<NumRows;i++){
+    for(let j=0;j<NumCols;j++){
+      if(i==y_rand&&j==x_rand){
+        if(enemy_ships[i][j].isAlive==true){
+          if(EnemyFireCount>0){
+            EnemyFireCount--;
+            EnemyFireARR.push(new EnemyFire(enemy_ships[i][j].x+enemy_ships[i][j].width/2,enemy_ships[i][j].y+enemy_ships[i][j].height,enemy_ships[i][j].width,enemy_ships[i][j].height));
+          }
+        }
+      }
+      
+    }
+  }
+  if(EnemyFireARR.length==1&&EnemyFireARR[0].y>0.7*canvasHeight){
+    EnemyFireCount++;
+  }
+  for(let i=0;i<EnemyFireARR.length;i++){
+    if(EnemyFireARR[i].y-30>canvasHeight){
+      EnemyFireARR=EnemyFireARR.filter((item)=>item!=EnemyFireARR[i]);
+    }
+  }
+
+} // end function fireCannonball
+
 
 // fires a cannonball
 function fireCannonball(event) {} // end function fireCannonball
@@ -255,6 +420,10 @@ function draw() {
     for (let j = 0; j < NumCols; j++) {
       enemy_ships[i][j].draw();
     }
+  }
+  for(let i=0;i<EnemyFireARR.length;i++){
+    EnemyFireARR[i].move();
+    EnemyFireARR[i].draw();
   }
 } // end function draw
 
@@ -286,6 +455,10 @@ function goConfiguration() {}
 function LoadGame() {
   muteDivs();
   document.getElementById("Game").style.display = "flex";
+  if (canvas!=undefined){
+    canvas.style.display="none"
+  }
+  inGame = false;
 }
 function muteDivs() {
   document.getElementById("Game").style.display = "none";
@@ -396,7 +569,10 @@ function keyDownHandler(event) {
         friendly_ship.moveDown();
         break;
       case FIRE_KEY: // space bar
-        friendly_ship.fireCannonball();
+        if(FIRE_COUNT>0){
+          
+          friendly_ship.fire();
+        }
         break;
     }
   }
