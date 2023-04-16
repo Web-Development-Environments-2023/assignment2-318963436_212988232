@@ -5,7 +5,7 @@ var canvas; // the canvas
 var context; // used for drawing on the canvas
 var canvasWidth = 1300;
 var canvasHeight = 600;
-var TIME_INTERVAL = 10; // screen refresh interval in milliseconds
+var TIME_INTERVAL = 2; // screen refresh interval in milliseconds
 var intervalTimer;
 var Score;
 
@@ -41,6 +41,12 @@ var floorY = canvasWidth * 0.8;
 var topY = canvasWidth * 0.6;
 var friendly_ship;
 var ENEMY_SPEED; // Enemy speed multiplier
+
+var bananas = [];
+for (var i = 0; i < 120; i++) {
+  bananas.push(new Image());
+  bananas[i].src = `bananas/banana`+i*3+".png";
+}
 
 // variables for the game loop and tracking statistics
 
@@ -114,15 +120,19 @@ function FriendlyFire(x, y) {
   this.img = new Image();
   this.img.src = "banana.png";
   this.FIRE_ARR = [];
+  this.isAlive = true;
   this.draw = function () {
-    if (this.y <= -10) {
+    if(this.isAlive == false){
+     return;   
+    }
+      if (this.y <= -10) {
       friendly_ship.FIRE_ARR = friendly_ship.FIRE_ARR.filter(
         (item) => item != this
       );
       friendly_ship.FireNum--;
       FIRE_COUNT++;
     }
-    context.drawImage(this.img, this.x + 15, this.y - 10, 50, 50);
+    context.drawImage(bananas[rotateAngle/3], this.x + 15, this.y - 10, 50, 50);
 
     for (let i = 0; i < NumRows; i++) {
       for (let j = 0; j < NumCols; j++) {
@@ -132,6 +142,7 @@ function FriendlyFire(x, y) {
           Math.abs(enemy_ships[i][j].y - this.y - 10) <= 50
         ) {
           enemy_ships[i][j].isAlive = false;
+          this.isAlive = false;
           friendly_ship.FIRE_ARR = friendly_ship.FIRE_ARR.filter(
             (item) => item != this
           );
@@ -139,6 +150,7 @@ function FriendlyFire(x, y) {
           FIRE_COUNT++;
           Score += 5 * (4 - i);
           document.getElementById("Score").innerHTML = "Score:" + Score;
+          return;
         }
       }
     }
@@ -362,7 +374,7 @@ function checkSetUp(
   if (!password.match(passwordRegex)) {
     alert(
       "Password must include at least 8 characters with numbers and letters." +
-        password
+      password
     );
     return false;
   }
@@ -372,9 +384,9 @@ function checkSetUp(
   if (!firstname.match(nameRegex) || !lastname.match(nameRegex)) {
     alert(
       "First name and last name must not include numbers." +
-        firstname +
-        " " +
-        lastname
+      firstname +
+      " " +
+      lastname
     );
     return false;
   }
@@ -471,17 +483,15 @@ function startGame() {
 function enemy_fire() {
   let x_rand = Math.floor(Math.random() * NumCols);
   let y_rand = Math.floor(Math.random() * NumRows);
-  if (enemy_ships[x_rand][y_rand].isAlive == true) {
+
+  if (enemy_ships[y_rand][x_rand].isAlive == true) {
     if (EnemyFireCount > 0) {
       EnemyFireCount--;
-      EnemyFireARR.push(
-        new EnemyFire(
-          enemy_ships[x_rand][y_rand].x,
-          enemy_ships[x_rand][y_rand].y
-        )
-      );
+      EnemyFireARR.push(new EnemyFire(enemy_ships[y_rand][x_rand].x, enemy_ships[y_rand][x_rand].y));
     }
   }
+
+
 
   for (let i = 0; i < EnemyFireARR.length; i++) {
     if (
@@ -508,7 +518,7 @@ function startTimer() {
 }
 
 function updatePositions() {
-  rotateAngle += 1;
+  rotateAngle = (rotateAngle +3)%360;
   context.clearRect(0, 0, canvasWidth, canvasHeight);
   friendly_ship.draw();
   friendly_ship.moveFiers();
