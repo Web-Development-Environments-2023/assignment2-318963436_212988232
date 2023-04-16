@@ -1,0 +1,404 @@
+body {
+  font-family: Arial, sans-serif;
+  background-image: url("background.png");
+  margin: 0;
+  padding: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  overflow: hidden;
+}
+
+canvas {
+  border: 10px solid rgb(244, 0, 0);
+}
+
+#levelInDiv{
+  height: 90vh;
+  min-width: 100vw;
+}
+#WelcomeForm
+{
+  width: 100%;
+}
+
+#logs_btns{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#header {
+  padding: 10px;
+  position: relative;
+}
+
+h1 {
+  margin: 0;
+  font-size: 36px;
+  color: #fff;
+}
+
+nav ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  text-align: left;
+  text-align: center;
+  align-items: center;
+  display: flex;
+  
+
+}
+
+nav li {
+  display: inline-block;
+  margin-left: 10px;
+  flex: 1;
+
+}
+
+nav a {
+  display: block;
+  padding: 10px;
+  color: #fff;
+  text-decoration: none;
+  border-radius: 5px;
+}
+
+nav a:hover {
+  background-color: #fff;
+  opacity: 30%;;
+  color: #000;
+}
+
+#Welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+}
+
+h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.patterns-button {
+  font-family: Lora;
+  letter-spacing: 10px;
+  color: #a5e4ff;
+  font-size: 20px;
+  font-weight: 700;
+  border: 2px solid #a5e4ff;
+  background-color: transparent;
+  padding: 10px 20px;
+  cursor: pointer;
+
+  animation: buttonAnimate 5s infinite alternate;
+}
+
+@keyframes buttonAnimate {
+  0% {
+    border-radius: 0 50%;
+    /* transform: rotate(0deg); */
+    background-color: hsl(189, 68%, 65%);
+  }
+
+  100% {
+    border-radius: 50% 0;
+    /* transform: rotate(360deg); */
+    background-color: hsla(189, 68%, 75%, 0%);
+  }
+}
+
+.patterns {
+  height: 100vh;
+}
+
+
+
+svg text {
+  font-family: Lora;
+  letter-spacing: 10px;
+  stroke: #a5e4ff;
+  font-size: 80px;
+  font-weight: 700;
+  stroke-width: 3;
+
+  animation: textAnimate 5s infinite alternate;
+
+}
+
+text {
+  font-family: Lora;
+  letter-spacing: 10px;
+  stroke: #a5e4ff;
+  font-size: 60px;
+  font-weight: 700;
+  stroke-width: 3;
+  color: #a5e4ff;
+  
+}
+
+@keyframes textAnimate {
+  0% {
+    stroke-dasharray: 0 50%;
+    stroke-dashoffset: 20%;
+    fill: hsl(189, 68%, 75%)
+  }
+
+  100% {
+    stroke-dasharray: 50% 0;
+    stroke-dashoffstet: -20%;
+    fill: hsla(189, 68%, 75%, 0%)
+  }
+
+}
+
+
+
+.Login {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+.SignUp {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+
+input {
+  font-family: Lora;
+  letter-spacing: 10px;
+  color: #a5e4ff;
+  font-size: 20px;
+  font-weight: 700;
+  border: 2px solid #a5e4ff;
+  border-radius: 4px;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  animation: inputAnimate 5s infinite alternate;
+
+}
+
+
+.Login_username {
+  padding: 10px 20px 10px 50px;
+  box-sizing: border-box;
+  background-image: url('UserNamelogo.png');
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  position: relative;
+  left: 15%;
+
+}
+
+
+.SignUp_username {
+  padding: 10px 20px 10px 50px;
+  box-sizing: border-box;
+  background-image: url('UserNamelogo.png');
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  position: relative;
+  left: 15%;
+
+}
+
+.Login_password {
+  padding: 10px 20px 10px 50px;
+  box-sizing: border-box;
+  background-image: url('PasswordLogo.png');
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  position: relative;
+  left: 15%;
+
+}
+
+
+.SignUp_password {
+  padding: 10px 20px 10px 50px;
+  box-sizing: border-box;
+  background-image: url('PasswordLogo.png');
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  position: relative;
+  left: 15%;
+
+}
+#SumbitLogin, #SumbitSignUp {
+  position: relative;
+  left: 15%;
+}
+
+.SignUp_email {
+  padding: 10px 20px 10px 50px;
+  box-sizing: border-box;
+  background-image: url('EmailLogo.png');
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  position: relative;
+  left: 15%;
+
+}
+.SignUp_birthday {
+  padding: 10px 20px 10px 15px;
+  box-sizing: border-box;
+  background-size: 30px 30px;
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  position: relative;
+  left: 15%;
+
+}
+
+#SignUpForm{
+  margin-left: 70px;
+}
+
+@keyframes inputAnimate {
+  0% {
+    background-color: hsl(189, 68%, 75%);
+  }
+
+  100% {
+    background-color: hsla(189, 68%, 75%, 0%);
+  }
+}
+
+::-webkit-calendar-picker-indicator {
+  background-image:url('birthdayLogo.png');
+  cursor: pointer;
+  
+}
+
+
+@import "compass/css3";
+
+@import url(https://fonts.googleapis.com/css?family=Lato:300,400,900);
+
+* {
+  box-sizing: border-box;
+}
+  
+html, body {
+  height: 100%;
+}
+
+html {
+  background: #444;
+}
+
+body {
+  min-height: 100%;
+  overflow: hidden;
+}
+
+.container {
+  height: 100%;
+  min-height: 100%;
+  margin: 0 auto;
+}
+
+.button-wrap {
+  position: relative;
+  text-align: center;
+  top: 50%;
+  margin-top: -2.5em;
+}
+
+@media (max-width: 40em) {
+  .button-wrap {
+    margin-top: -1.5em;
+  }
+}
+
+.button-label {
+  display: inline-block;
+  padding: 1em 2em;
+  margin: 0.5em;
+  cursor: pointer;
+  color: #292929;
+  border-radius: 0.25em;
+  background: #000000;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.22);
+  transition: 0.3s;
+  user-select: none;
+}
+
+.button-label h1 {
+  font-size: 1em;
+  font-family: "Lato", sans-serif;
+}
+
+.button-label:hover {
+  background: #808080;
+  color: #202020;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.32);
+}
+
+.button-label:active {
+  transform: translateY(2px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0px -1px 0 rgba(0,0,0,0.22); 
+}
+
+@media (max-width: 40em) {
+  .button-label {
+    padding: 0em 1em 3px;
+    margin: 0.25em;
+  }
+}
+
+#easy-button:checked + .button-label {
+  background: #2ECC71;
+  color: #efefef;
+}
+
+#easy-button:checked + .button-label:hover {
+  background: #2dc367;
+  color: #d9d9d9;
+}
+
+#normal-button:checked + .button-label {
+  background: #205582;
+  color: #efefef;
+}
+
+#normal-button:checked + .button-label:hover {
+  background: #205582;
+  color: #d9d9d9;
+}
+
+#hard-button:checked + .button-label {
+  background: #c21a15;
+  color: #efefef;
+}
+
+#hard-button:checked + .button-label:hover {
+  background: #c21a15;
+  color: #d9d9d9;
+}
+
+.hidden {
+  display: none;
+}

@@ -2,8 +2,8 @@
 // Logic of the Cannon Game
 var canvas; // the canvas
 var context; // used for drawing on the canvas
-var canvasWidth;
-var canvasHeight;
+var canvasWidth=800;
+var canvasHeight=500;
 
 var floorY;
 var topY;
@@ -48,7 +48,7 @@ var SCORE = 0;
 
 // constants for game play
 
-var TIME_INTERVAL = 1; // screen refresh interval in milliseconds
+var TIME_INTERVAL = 10; // screen refresh interval in milliseconds
 var ENEMY_SPEED = 0.05; // Enemy speed multiplier
 var FRIENDLY_SPEED = 3; // Friendly speed multiplier
 var FRIENDLY_FIRE_SPEED = 0.5;
@@ -156,6 +156,7 @@ function FriendlySpaceShip(x, y, width, height) {
       this.FIRE_ARR[i].move();
     }
   };
+  
 }
 
 function EnemySpaceShip(x, y, width, height) {
@@ -232,6 +233,7 @@ function FriendlyFire(x, y, width, height) {
   this.move = function () {
       this.y=Math.max(this.y-FRIENDLY_FIRE_SPEED,-100);
   };
+
 }
 
 
@@ -292,7 +294,6 @@ function setupGame() {
   });
 
   inGame = false;
-  EnemyMove = "right";
   change_direction = false;
 
   // get the canvas and context
@@ -313,6 +314,7 @@ function stopTimer() {
 // called by function newGame to scale the size of the game elements
 // relative to the size of the canvas before the game begins
 function resetElements() {
+  EnemyMove = "right";
   canvas.style.display="flex";
   FIRE_COUNT=3;
   SCORE=0;
@@ -498,7 +500,6 @@ function sumbitSignUp() {
       firstname: firstname,
       lastname: lastname,
     };
-    muteDivs();
     LoadGame();
   }
 }

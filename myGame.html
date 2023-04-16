@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Spaceship Game</title>
+  <link rel="stylesheet" type="text/css" href="myGameStyle.css">
+  <link rel="icon" type="image/x-icon" href="My project.png">
+  <script src="myGameApp.js"></script>
+
+</head>
+
+<body>
+  <table>
+    <tr>
+      <td>
+        <div id="header" style="height: 100px;">
+          <nav>
+            <ul id="menuUL" >
+              <li><a href="#" id="Home_menu"><img src="homeLogo.png"></a></li>
+              <li><a href="#" id="Logout_menu" style="display: none;"><img src="logoutLogo.png"></a></li>
+              <li><a href="#" id="About_menu"><img src="aboutLogo.png"></a></li>
+              <li><text id="Score" style="display: none;"></text></li>
+              <li id="heartLI" style="display: none;"></li>
+
+            </ul>
+          </nav>
+        </div>
+      </td>
+     
+    </tr>
+    <tr>
+      <td>
+        <div class="Game" id="Game" style="display: none">
+          <canvas id="theCanvas"> </canvas>
+        </div>
+      </td>
+      
+    </tr>
+  </table>
+  
+
+  <div id="Welcome" class="start">
+    <form id="WelcomeForm">
+      <div class="patterns" id="WelcomeInDiv">
+        <svg width="100%" height="40%">
+          <text x="50%" y="93%" text-anchor="middle">
+            Welcome
+          </text>
+        </svg>
+        <table id="logs_btns">
+          <tr>
+            <td>
+              <button class="patterns-button" role="button" id="Login_btn">Login</button>
+            </td>
+            <td>
+              <button class="patterns-button" role="button" id="SignUp_btn">SignUp</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
+
+  </div>
+  <div id="Login" class="Login" style="display: none">
+
+    <form>
+      <svg width="100%" height="40%">
+        <text x="50%" y="80%" text-anchor="middle">
+          Login
+        </text>
+      </svg>
+      <div>
+        <input type="text" placeholder="Username" id="Login_username" class="Login_username">
+        <br>
+        <input type="password" placeholder="Password" id="Login_password" class="Login_password">
+        <input class="patterns-button" type="button" value="Login" id="SumbitLogin" />
+      </div>
+    </form>
+  </div>
+  <div id="Configuration" style="display: none">
+    <form id="ConfigurationForm">
+      <div class="container" id="levelInDiv">
+        <div class="button-wrap">
+          <input type="radio" name="difficulty" id="easy-button" class="hidden radio-label" checked>
+          <label for="easy-button" class="button-label">
+            <h1>Easy</h1>
+          </label>
+          <input type="radio" name="difficulty" id="normal-button" class="hidden radio-label">
+          <label for="normal-button" class="button-label">
+            <h1>Normal</h1>
+          </label>
+          <input type="radio" name="difficulty" id="hard-button" class="hidden radio-label">
+          <label for="hard-button" class="button-label">
+            <h1>Hard</h1>
+          </label>
+          <br>
+          <input class="patterns-button" type="button" value="start" id="StartButton" />
+
+          
+        </div>
+      </div>
+      
+    </form>
+  </div>
+
+
+  <div id="SignUp" class="Login" style="display: none">
+    <form id="SignUpForm">
+      <svg width="100%" height="20%">
+        <text x="50%" y="75%" text-anchor="middle">
+          Sign Up
+        </text>
+      </svg>
+      <div>
+        <table>
+          <tr>
+            <td>
+              <input type="text" placeholder="Username" id="SignUp_username" class="SignUp_username" required>
+            </td>
+            <td>
+              <input type="text" placeholder="Email" name="Email" id="SignUp_email" class="SignUp_email" required />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="password" placeholder="Password" id="SignUp_password" class="SignUp_password" required>
+            </td>
+            <td>
+              <input type="password" placeholder="verify" name="verify" id="SignUp_confirmPassword"
+                class="SignUp_password" required />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" placeholder="First Name" name="FirstName" id="SignUp_firstname" class="SignUp_username"
+                required />
+            </td>
+            <td>
+
+              <input type="text" placeholder="Last Name" name="LastName" id="SignUp_lastname" class="SignUp_username"
+                required />
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <input type="date" placeholder="BirthDay" name="BirthDay" id="SignUp_birthday" class="SignUp_birthday"
+                required />
+            </td>
+            <td>
+              <input class="patterns-button" type="button" value="SignUp" id="SumbitSignUp" />
+            </td>
+          </tr>
+
+
+
+      </div>
+      </table>
+
+    </form>
+  </div>
+
+
+ 
+</body>
+
+</html>
