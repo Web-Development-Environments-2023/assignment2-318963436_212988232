@@ -20,7 +20,13 @@
               <li><a href="#" id="Logout_menu" style="display: none;"><img src="logoutLogo.png"></a></li>
               <li><a href="#" id="About_menu"><img src="aboutLogo.png"></a></li>
               <li><text id="Score" style="display: none;"></text></li>
+              <li><table id="TimerTable" style="display: none;"><tr>
+                <td><img id="TimerImg" src="TimerLogo.png"></td>
+                <td><text id="TimerText"></text></td>
+              </tr> </table>
+              </text></li>
               <li id="heartLI" style="display: none;"></li>
+         
 
             </ul>
           </nav>
@@ -102,6 +108,27 @@
       
     </form>
   </div>
+  <div id="EndGame" style="display: none;">
+    <form id="EndGameForm">
+      <div class="patterns" id="EndGameInDiv">
+        <svg width="100%" height="40%">
+          <text x="50%" y="93%" text-anchor="middle">
+            Game Over
+          </text>
+        </svg>
+        <table id="logs_btns">
+          <tr>
+            <td>
+              <button class="patterns-button" role="button" id="Restart_btn">Restart</button>
+            </td>
+            <td>
+              <button class="patterns-button" role="button" id="Exit_btn">Exit</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </div>
 
 
   <div id="SignUp" class="Login" style="display: none">
@@ -159,9 +186,6 @@
 
     </form>
   </div>
-
-
- 
 </body>
 
 </html>

@@ -14,16 +14,16 @@ canvas {
   border: 10px solid rgb(244, 0, 0);
 }
 
-#levelInDiv{
+#levelInDiv {
   height: 90vh;
   min-width: 100vw;
 }
-#WelcomeForm
-{
+#WelcomeForm,
+#EndGameForm {
   width: 100%;
 }
 
-#logs_btns{
+#logs_btns {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -50,15 +50,12 @@ nav ul {
   text-align: center;
   align-items: center;
   display: flex;
-  
-
 }
 
 nav li {
   display: inline-block;
   margin-left: 10px;
   flex: 1;
-
 }
 
 nav a {
@@ -71,11 +68,12 @@ nav a {
 
 nav a:hover {
   background-color: #fff;
-  opacity: 30%;;
+  opacity: 30%;
   color: #000;
 }
 
-#Welcome {
+#Welcome,
+#EndGame {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -119,8 +117,6 @@ h2 {
   height: 100vh;
 }
 
-
-
 svg text {
   font-family: Lora;
   letter-spacing: 10px;
@@ -130,7 +126,6 @@ svg text {
   stroke-width: 3;
 
   animation: textAnimate 5s infinite alternate;
-
 }
 
 text {
@@ -141,25 +136,21 @@ text {
   font-weight: 700;
   stroke-width: 3;
   color: #a5e4ff;
-  
 }
 
 @keyframes textAnimate {
   0% {
     stroke-dasharray: 0 50%;
     stroke-dashoffset: 20%;
-    fill: hsl(189, 68%, 75%)
+    fill: hsl(189, 68%, 75%);
   }
 
   100% {
     stroke-dasharray: 50% 0;
     stroke-dashoffstet: -20%;
-    fill: hsla(189, 68%, 75%, 0%)
+    fill: hsla(189, 68%, 75%, 0%);
   }
-
 }
-
-
 
 .Login {
   position: absolute;
@@ -168,18 +159,12 @@ text {
   transform: translate(-50%, -50%);
 }
 
-
-
-
 .SignUp {
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
-
-
 
 input {
   font-family: Lora;
@@ -192,60 +177,53 @@ input {
   padding: 10px 20px;
   box-sizing: border-box;
   animation: inputAnimate 5s infinite alternate;
-
 }
-
 
 .Login_username {
   padding: 10px 20px 10px 50px;
   box-sizing: border-box;
-  background-image: url('UserNamelogo.png');
+  background-image: url("UserNamelogo.png");
   background-size: 30px 30px;
   background-repeat: no-repeat;
   background-position: 10px center;
   position: relative;
   left: 15%;
-
 }
-
 
 .SignUp_username {
   padding: 10px 20px 10px 50px;
   box-sizing: border-box;
-  background-image: url('UserNamelogo.png');
+  background-image: url("UserNamelogo.png");
   background-size: 30px 30px;
   background-repeat: no-repeat;
   background-position: 10px center;
   position: relative;
   left: 15%;
-
 }
 
 .Login_password {
   padding: 10px 20px 10px 50px;
   box-sizing: border-box;
-  background-image: url('PasswordLogo.png');
+  background-image: url("PasswordLogo.png");
   background-size: 30px 30px;
   background-repeat: no-repeat;
   background-position: 10px center;
   position: relative;
   left: 15%;
-
 }
-
 
 .SignUp_password {
   padding: 10px 20px 10px 50px;
   box-sizing: border-box;
-  background-image: url('PasswordLogo.png');
+  background-image: url("PasswordLogo.png");
   background-size: 30px 30px;
   background-repeat: no-repeat;
   background-position: 10px center;
   position: relative;
   left: 15%;
-
 }
-#SumbitLogin, #SumbitSignUp {
+#SumbitLogin,
+#SumbitSignUp {
   position: relative;
   left: 15%;
 }
@@ -253,13 +231,12 @@ input {
 .SignUp_email {
   padding: 10px 20px 10px 50px;
   box-sizing: border-box;
-  background-image: url('EmailLogo.png');
+  background-image: url("EmailLogo.png");
   background-size: 30px 30px;
   background-repeat: no-repeat;
   background-position: 10px center;
   position: relative;
   left: 15%;
-
 }
 .SignUp_birthday {
   padding: 10px 20px 10px 15px;
@@ -269,10 +246,9 @@ input {
   background-position: 10px center;
   position: relative;
   left: 15%;
-
 }
 
-#SignUpForm{
+#SignUpForm {
   margin-left: 70px;
 }
 
@@ -287,11 +263,9 @@ input {
 }
 
 ::-webkit-calendar-picker-indicator {
-  background-image:url('birthdayLogo.png');
+  background-image: url("birthdayLogo.png");
   cursor: pointer;
-  
 }
-
 
 @import "compass/css3";
 
@@ -300,8 +274,9 @@ input {
 * {
   box-sizing: border-box;
 }
-  
-html, body {
+
+html,
+body {
   height: 100%;
 }
 
@@ -341,7 +316,7 @@ body {
   color: #292929;
   border-radius: 0.25em;
   background: #000000;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.22);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.22);
   transition: 0.3s;
   user-select: none;
 }
@@ -354,12 +329,13 @@ body {
 .button-label:hover {
   background: #808080;
   color: #202020;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0 -3px 0 rgba(0,0,0,0.32);
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.32);
 }
 
 .button-label:active {
   transform: translateY(2px);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.2), inset 0px -1px 0 rgba(0,0,0,0.22); 
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2),
+    inset 0px -1px 0 rgba(0, 0, 0, 0.22);
 }
 
 @media (max-width: 40em) {
@@ -370,7 +346,7 @@ body {
 }
 
 #easy-button:checked + .button-label {
-  background: #2ECC71;
+  background: #2ecc71;
   color: #efefef;
 }
 
