@@ -65,10 +65,10 @@
         <table id="logs_btns">
           <tr>
             <td>
-              <button class="patterns-button" role="button" id="Login_btn">Login</button>
+              <input class="patterns-button" type="button" id="Login_btn" value="Login"></input>
             </td>
             <td>
-              <button class="patterns-button" role="button" id="SignUp_btn">SignUp</button>
+              <input class="patterns-button" type="button" id="SignUp_btn" value="SignUp"></input>
             </td>
           </tr>
         </table>
@@ -114,6 +114,29 @@
     </form>
   </div>
 
+  <dialog id="settingsDialog">
+    <svg width="100%" height="20%">
+      <text x="50%" y="75%" text-anchor="middle">
+        settings
+      </text>
+    </svg>
+    <form>
+      <label for="difficulty">Difficulty:</label>
+      <select name="difficulty" id="difficulty">
+        <option value="easy">Easy</option>
+        <option value="medium">Medium</option>
+        <option value="hard">Hard</option>
+      </select>
+      <br>
+      <label for="sound">Sound:</label>
+      <input type="range" name="sound" id="sound" min="-10" max="110" value="50">
+      <br>
+      <button type="submit">Save</button>
+      <button type="button" id="cancelBtn">Cancel</button>
+
+    </form>
+  </dialog>
+
   <div id="EndGame" style="display: none;">
     <form id="EndGameForm">
       <div class="patterns" id="EndGameInDiv">
@@ -144,10 +167,10 @@
         <table id="logs_btns">
           <tr>
             <td>
-              <button class="patterns-button" role="button" id="Restart_btn">Restart</button>
+              <input class="patterns-button" type="button" id="Restart_btn" value="Restart"></input>
             </td>
             <td>
-              <button class="patterns-button" role="button" id="Exit_btn">Exit</button>
+              <input class="patterns-button" type="button" id="Exit_btn" value="Exit"></input>
             </td>
           </tr>
         </table>
@@ -203,9 +226,6 @@
               <input class="patterns-button" type="button" value="SignUp" id="SumbitSignUp" />
             </td>
           </tr>
-
-
-
       </div>
       </table>
 

@@ -273,6 +273,18 @@ function setupGame() {
     },
     false
   );
+
+  const settingsBtn = document.getElementById("Settings_menu");
+  const settingsDialog = document.getElementById("settingsDialog");
+  const cancelBtn = document.getElementById("cancelBtn");
+
+  settingsBtn.addEventListener("click", function () {
+    settingsDialog.showModal();
+  });
+
+  cancelBtn.addEventListener("click", function () {
+    settingsDialog.close();
+  });
 }
 
 function keyDownHandler(event) {

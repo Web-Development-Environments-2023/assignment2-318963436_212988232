@@ -101,6 +101,19 @@ h2 {
   animation: buttonAnimate 5s infinite alternate;
 }
 
+input[type="button"] {
+  font-family: Lora;
+  letter-spacing: 10px;
+  color: #a5e4ff;
+  font-size: 20px;
+  font-weight: 700;
+  border: 2px solid #a5e4ff;
+  background-color: transparent;
+  padding: 10px 20px;
+  cursor: pointer;
+
+  animation: buttonAnimate 5s infinite alternate;
+}
 @keyframes buttonAnimate {
   0% {
     border-radius: 0 50%;
@@ -407,4 +420,9 @@ body {
   border-radius: 0.25em;
   border-collapse: collapse;
   margin: 1em;
+}
+#settingsDialog {
+  width: 60vw;
+  height: 60vh;
+  padding: 20px;
 }
