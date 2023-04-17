@@ -5,7 +5,10 @@
   <link rel="stylesheet" type="text/css" href="myGameStyle.css">
   <link rel="icon" type="image/x-icon" href="resourses/logos/My project.png">
   <script src="myGameApp.js"></script>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="/assets/favicon.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 </head>
 
 <body>
@@ -120,19 +123,21 @@
         settings
       </text>
     </svg>
-    <form>
+    <form id="Settings_Form">
       <label for="difficulty">Difficulty:</label>
       <select name="difficulty" id="difficulty">
         <option value="easy">Easy</option>
         <option value="medium">Medium</option>
         <option value="hard">Hard</option>
       </select>
-      <br>
       <label for="sound">Sound:</label>
       <input type="range" name="sound" id="sound" min="-10" max="110" value="50">
       <br>
       <button type="submit">Save</button>
       <button type="button" id="cancelBtn">Cancel</button>
+    <textarea class="use-keyboard-input" style="position: absolute; top: 130px; right: 30px; width: 300px;"></textarea>
+
+    <script src="Keyboard.js"></script>
 
     </form>
   </dialog>

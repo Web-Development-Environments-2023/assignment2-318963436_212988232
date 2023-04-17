@@ -62,6 +62,11 @@ var timerCount; // number of times the timer fired since the last second
 var timeLeft; // the amount of time left in seconds
 var timeElapsed; // the number of seconds elapsed
 
+
+function chnageFireKey(key) {
+  FIRE_KEY = key;
+}
+
 function SpaceShip(x, y) {
   this.x = x;
   this.y = y;
