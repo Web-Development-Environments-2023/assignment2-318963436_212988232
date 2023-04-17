@@ -12,6 +12,10 @@ var timeElapsed; // the number of seconds elapsed
 var Score;
 var inGame = false;
 
+//
+var test;
+//
+
 var rotateAngle = 0;
 var FRIENDLY_SPEED = 10;
 var FRIENDLY_FIRE_SPEED = 2;

@@ -1,6 +1,10 @@
 var FIRE_KEY = 32;
 keys_elements = [];
 
+//
+var test;
+//
+
 const keyMap = {
   1: 49,
   2: 50,
