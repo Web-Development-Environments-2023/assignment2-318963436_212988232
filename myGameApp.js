@@ -353,11 +353,13 @@ function muteDivs() {
   document.getElementById("EndGame").style.display = "none";
   document.getElementById("Score").style.display = "none";
   document.getElementById("TimerTable").style.display = "none";
+
   while (document.getElementById("heartLI").firstChild) {
     document
       .getElementById("heartLI")
       .removeChild(document.getElementById("heartLI").firstChild);
   }
+
   document.getElementById("heartLI").style.display = "none";
 }
 
