@@ -10,6 +10,7 @@ var MultiplyFactor = 1.2;
 var intervalTimer;
 var timeElapsed; // the number of seconds elapsed
 var Score;
+var inGame = false;
 
 var rotateAngle = 0;
 var FRIENDLY_SPEED = 10;
@@ -61,6 +62,12 @@ var enemy_imgs = [];
 var timerCount; // number of times the timer fired since the last second
 var timeLeft; // the amount of time left in seconds
 var timeElapsed; // the number of seconds elapsed
+
+// variables for dialog boxes
+var settingsCancelBtn;
+var settingsDialog;
+var aboutCancelBtn;
+var aboutDialog;
 
 function SpaceShip(x, y) {
   this.x = x;
@@ -239,7 +246,6 @@ function setupGame() {
     .getElementById("SumbitSignUp")
     .addEventListener("click", sumbitSignUp);
   document.getElementById("Home_menu").addEventListener("click", goHome);
-  document.getElementById("About_menu").addEventListener("click", goAbout);
   document.getElementById("Logout_menu").addEventListener("click", logOut);
   document.getElementById("StartButton").addEventListener("click", startGame);
   document.getElementById("Restart_btn").addEventListener("click", restartGame);
@@ -274,16 +280,54 @@ function setupGame() {
     false
   );
 
-  const settingsBtn = document.getElementById("Settings_menu");
-  const settingsDialog = document.getElementById("settingsDialog");
-  const cancelBtn = document.getElementById("cancelBtn");
+  // get the settings dialog
+  settingsDialog = document.getElementById("settingsDialog");
+  settingsCancelBtn = document.getElementById("settingsCancelBtn");
 
-  settingsBtn.addEventListener("click", function () {
-    settingsDialog.showModal();
+  document
+    .getElementById("Settings_menu")
+    .addEventListener("click", function () {
+      stopTimer();
+      settingsDialog.showModal();
+    });
+
+  settingsCancelBtn.addEventListener("click", function () {
+    settingsDialog.close();
+    if (inGame) {
+      startTimer();
+    }
   });
 
-  cancelBtn.addEventListener("click", function () {
-    settingsDialog.close();
+  // get the about dialog
+  aboutDialog = document.getElementById("AboutDialog");
+  aboutCancelBtn = document.getElementById("aboutCancelBtn");
+
+  document.getElementById("About_menu").addEventListener("click", function () {
+    stopTimer();
+    aboutDialog.showModal();
+  });
+
+  aboutCancelBtn.addEventListener("click", function () {
+    aboutDialog.close();
+    if (inGame) {
+      startTimer();
+    }
+  });
+
+  window.addEventListener("click", function (event) {
+    if (event.target == aboutDialog || event.target == settingsDialog) {
+      closeDialog();
+      if (inGame) {
+        startTimer();
+      }
+    }
+  });
+
+  // Close the dialog when the user presses the ESC key
+  window.addEventListener("keydown", function (event) {
+    if (event.key === "Escape") {
+      closeDialog();
+    }
   });
 }
 
@@ -330,12 +374,11 @@ function goSignUp() {
 }
 function goHome() {
   muteDivs();
+  inGame = false;
   document.getElementById("Welcome").style.display = "flex";
 }
-function goAbout() {
-  muteDivs();
-}
 function logOut() {
+  inGame = false;
   canvas.style.display = "none";
   logedInUser = undefined;
   BackgroundSound.pause();
@@ -623,6 +666,7 @@ function refreshTimer() {
 }
 function checkEndGame() {
   if (lives <= 0 || Score == MAXSCORE || timeLeft <= 0) {
+    inGame = false;
     muteDivs();
     document.getElementById("EndGame").style.display = "flex";
     stopTimer();
@@ -714,6 +758,10 @@ function checkEndGame() {
 }
 function restartGame() {
   startGame();
+}
+function closeDialog() {
+  aboutDialog.close();
+  settingsDialog.close();
 }
 
 function moveEnemyShips() {
