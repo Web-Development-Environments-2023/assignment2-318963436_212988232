@@ -1,10 +1,6 @@
 var FIRE_KEY = 32;
 keys_elements = [];
 
-//
-var test;
-//
-
 const keyMap = {
   1: 49,
   2: 50,
@@ -50,6 +46,7 @@ const keyMap = {
   "?": 191,
   space: 32,
 };
+
 
 function on_press(element) {
   FIRE_KEY = keyMap[element.innerHTML];
