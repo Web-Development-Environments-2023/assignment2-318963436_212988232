@@ -134,12 +134,23 @@
       <input type="range" name="sound" id="sound" min="-10" max="110" value="50">
       <br>
       <button type="submit">Save</button>
-      <button type="button" id="cancelBtn">Cancel</button>
+      <button type="button" id="settingsCancelBtn">Cancel</button>
     <textarea class="use-keyboard-input" style="position: absolute; top: 130px; right: 30px; width: 300px;"></textarea>
 
     <script src="Keyboard.js"></script>
 
     </form>
+  </dialog>
+
+  <dialog id="AboutDialog">
+    <svg width="100%" height="20%">
+      <text x="50%" y="75%" text-anchor="middle">
+        Information
+      </text>
+    
+    </svg>
+    <button type="button" id="aboutCancelBtn">Cancel</button>
+    
   </dialog>
 
   <div id="EndGame" style="display: none;">
