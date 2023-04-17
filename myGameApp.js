@@ -335,6 +335,9 @@ function setupGame() {
   window.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
       closeDialog();
+      if (inGame) {
+        startTimer();
+      }
     }
   });
 }
