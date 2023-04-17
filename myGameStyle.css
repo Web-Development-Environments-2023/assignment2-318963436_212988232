@@ -1,6 +1,6 @@
 body {
   font-family: Arial, sans-serif;
-  background-image: url("background.png");
+  background-image: url("resourses/backgrounds/background.png");
   margin: 0;
   padding: 0;
   background-size: cover;
@@ -19,7 +19,8 @@ canvas {
   min-width: 100vw;
 }
 #WelcomeForm,
-#EndGameForm {
+#EndGameForm,
+#WinloseTxt {
   width: 100%;
 }
 
@@ -73,7 +74,8 @@ nav a:hover {
 }
 
 #Welcome,
-#EndGame {
+#EndGame,
+#EndGameForm {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -182,7 +184,7 @@ input {
 .Login_username {
   padding: 10px 20px 10px 50px;
   box-sizing: border-box;
-  background-image: url("UserNamelogo.png");
+  background-image: url("resourses/logos/UserNamelogo.png");
   background-size: 30px 30px;
   background-repeat: no-repeat;
   background-position: 10px center;
@@ -193,7 +195,7 @@ input {
 .SignUp_username {
   padding: 10px 20px 10px 50px;
   box-sizing: border-box;
-  background-image: url("UserNamelogo.png");
+  background-image: url("resourses/logos/UserNamelogo.png");
   background-size: 30px 30px;
   background-repeat: no-repeat;
   background-position: 10px center;
@@ -204,7 +206,7 @@ input {
 .Login_password {
   padding: 10px 20px 10px 50px;
   box-sizing: border-box;
-  background-image: url("PasswordLogo.png");
+  background-image: url("resourses/logos/PasswordLogo.png");
   background-size: 30px 30px;
   background-repeat: no-repeat;
   background-position: 10px center;
@@ -215,7 +217,7 @@ input {
 .SignUp_password {
   padding: 10px 20px 10px 50px;
   box-sizing: border-box;
-  background-image: url("PasswordLogo.png");
+  background-image: url("resourses/logos/PasswordLogo.png");
   background-size: 30px 30px;
   background-repeat: no-repeat;
   background-position: 10px center;
@@ -231,7 +233,7 @@ input {
 .SignUp_email {
   padding: 10px 20px 10px 50px;
   box-sizing: border-box;
-  background-image: url("EmailLogo.png");
+  background-image: url("resourses/logos/EmailLogo.png");
   background-size: 30px 30px;
   background-repeat: no-repeat;
   background-position: 10px center;
@@ -263,7 +265,7 @@ input {
 }
 
 ::-webkit-calendar-picker-indicator {
-  background-image: url("birthdayLogo.png");
+  background-image: url("resourses/logos/birthdayLogo.png");
   cursor: pointer;
 }
 
@@ -377,4 +379,32 @@ body {
 
 .hidden {
   display: none;
+}
+@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,600);
+
+#lastscores th {
+  border-bottom: 1px solid #a5e4ff;
+  font-size: 1.5em;
+  font-weight: 800;
+  padding: 0.5em 1em;
+  text-align: center;
+  stroke: #a5e4ff;
+  color: #a5e4ff;
+}
+#lastscores td {
+  font-weight: 600;
+  padding: 0.65em 1em;
+  text-align: center;
+  stroke: #a5e4ff;
+  color: #a5e4ff;
+  font-size: 1em;
+}
+
+#lastscores {
+  background: #012b39;
+  background: rgba(1, 43, 57, 0.5);
+
+  border-radius: 0.25em;
+  border-collapse: collapse;
+  margin: 1em;
 }

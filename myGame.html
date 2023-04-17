@@ -3,24 +3,36 @@
 <head>
   <title>Spaceship Game</title>
   <link rel="stylesheet" type="text/css" href="myGameStyle.css">
-  <link rel="icon" type="image/x-icon" href="My project.png">
+  <link rel="icon" type="image/x-icon" href="resourses/logos/My project.png">
   <script src="myGameApp.js"></script>
 
 </head>
 
 <body>
+  <audio id = "background_music" preload = "auto">
+    <source src = "resourses/sounds/background.mp3" type = "audio/ogg"></audio>
+ <audio id = "FriendlyFire" preload = "auto">
+    <source src = "resourses/sounds/FreindlyFire1.mp3" type = "audio/ogg"></audio>
+ <audio id = "Hit" preload = "auto">
+    <source src = "resourses/sounds/Hit3.mp3" type = "audio/ogg"></audio>
+  <audio id = "FriendlyHit" preload = "auto">
+    <source src = "resourses/sounds/Hit1.mp3" type = "audio/ogg"></audio>
+  <audio id = "WinGame" preload = "auto">
+    <source src = "resourses/sounds/Win1.mp3" type = "audio/ogg"></audio>
+  <audio id = "LoseGame" preload = "auto">
+    <source src = "resourses/sounds/loss1.mp3" type = "audio/ogg"></audio>
   <table>
     <tr>
       <td>
         <div id="header" style="height: 100px;">
           <nav>
             <ul id="menuUL" >
-              <li><a href="#" id="Home_menu"><img src="homeLogo.png"></a></li>
-              <li><a href="#" id="Logout_menu" style="display: none;"><img src="logoutLogo.png"></a></li>
-              <li><a href="#" id="About_menu"><img src="aboutLogo.png"></a></li>
+              <li><a href="#" id="Home_menu"><img src="resourses/logos/homeLogo.png"></a></li>
+              <li><a href="#" id="Logout_menu" style="display: none;"><img src="resourses/logos/logoutLogo.png"></a></li>
+              <li><a href="#" id="About_menu"><img src="resourses/logos/aboutLogo.png"></a></li>
               <li><text id="Score" style="display: none;"></text></li>
               <li><table id="TimerTable" style="display: none;"><tr>
-                <td><img id="TimerImg" src="TimerLogo.png"></td>
+                <td><img id="TimerImg" src="resourses/logos/TimerLogo.png"></td>
                 <td><text id="TimerText"></text></td>
               </tr> </table>
               </text></li>
@@ -110,11 +122,30 @@
   <div id="EndGame" style="display: none;">
     <form id="EndGameForm">
       <div class="patterns" id="EndGameInDiv">
-        <svg width="100%" height="40%">
-          <text x="50%" y="93%" text-anchor="middle">
+        <svg width="100%" height="10%">
+          <text x="50%" y="80%" text-anchor="middle">
             Game Over
           </text>
         </svg>
+          
+          <text id="WinloseTxt" x="50%" y="93%" text-anchor="middle">
+          </text>
+          <table id="lastscores" >
+            <thead> 
+  
+            <tr>
+                <th>Rank</th>
+                <th>Score</th>
+                <th>Time Elapsed</th>
+                <th>Level</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody >
+
+            </tbody>
+          </table>
+        
         <table id="logs_btns">
           <tr>
             <td>
