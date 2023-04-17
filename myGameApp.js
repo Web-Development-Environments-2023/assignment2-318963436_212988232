@@ -69,6 +69,10 @@ var settingsDialog;
 var aboutCancelBtn;
 var aboutDialog;
 
+function chnageFireKey(key) {
+  FIRE_KEY = key;
+}
+
 function SpaceShip(x, y) {
   this.x = x;
   this.y = y;
