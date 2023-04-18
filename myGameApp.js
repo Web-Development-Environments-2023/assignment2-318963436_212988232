@@ -17,7 +17,7 @@ var test;
 //
 
 var rotateAngle = 0;
-var FRIENDLY_SPEED = 10;
+var FRIENDLY_SPEED = 20;
 var FRIENDLY_FIRE_SPEED = 2;
 var MAXSCORE = 250;
 var EnemyFireCount;
@@ -285,15 +285,16 @@ function EnemyFire(x, y) {
   this.final = false;
   this.draw = function () {
     if (
-      Math.abs(friendly_ship.x - this.x) < 50 &&
-      Math.abs(friendly_ship.y - this.y - 10) <= 50
+      Math.abs(friendly_ship.x - this.x+25) < 50 &&
+      Math.abs(friendly_ship.y - this.y ) <= 40
     ) {
       lives--;
       EnemyFireCount++;
       document
         .getElementById("heartLI")
         .removeChild(document.getElementById("heartLI").lastChild);
-      EnemyFireARR = EnemyFireARR.filter((item) => item != this);
+      EnemyFireARR = [];
+      EnemyFireCount = 4-level;
 
       FriendlyHitSound.play();
       friendly_ship.x = WidthDistanceFactor * Math.random() * canvasWidth;
@@ -618,6 +619,7 @@ function checkSetUp(
 function resetElements() {
   Score = 0;
   PrizeSpeed = 0.5;
+  Prizes = [];
   EnemyMove = "right";
   EnemyFireARR = [];
 
@@ -748,8 +750,14 @@ function updatePositions() {
 }
 function movePrizes() {
   for (let i = 0; i < Prizes.length; i++) {
-    Prizes[i].draw();
+    prize=Prizes[i];
     Prizes[i].move();
+    Prizes[i].draw();
+    if(prize!=Prizes[i]){
+      i--;
+      continue;
+    }
+
     if (Prizes[i].y > canvasHeight+100) {
       Prizes = Prizes.filter((item) => item != Prizes[i]);
     }
@@ -891,7 +899,12 @@ function moveEnemyShips() {
     }
   }
   for (let i = 0; i < EnemyFireARR.length; i++) {
+    fire=EnemyFireARR[i];
     EnemyFireARR[i].move();
+    if(fire!=EnemyFireARR[i]){
+      i--;
+      continue;
+    }
     EnemyFireARR[i].draw();
   }
 }
