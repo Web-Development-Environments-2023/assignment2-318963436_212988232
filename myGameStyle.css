@@ -333,6 +333,7 @@ body {
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.22);
   transition: 0.3s;
   user-select: none;
+  border: #a5e4ff 2px solid;
 }
 
 .button-label h1 {

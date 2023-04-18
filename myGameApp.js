@@ -49,6 +49,7 @@ var floorY = canvasWidth * 0.8;
 var topY = canvasWidth * 0.6;
 var friendly_ship;
 var ENEMY_SPEED; // Enemy speed multiplier
+var PrizeSpeed; // Prize speed multiplier
 
 //sounds
 var HitSound;
@@ -73,9 +74,83 @@ var settingsDialog;
 var aboutCancelBtn;
 var aboutDialog;
 
+var Prizes=[];
+
 function chnageFireKey(key) {
   FIRE_KEY = key;
 }
+
+
+
+function ClockPrize(x, y) {
+  this.x = x;
+  this.y = y;
+  this.img = new Image();
+  this.img.src = "resourses/prizes/PrizeClock.png";
+  this.draw = function () {
+    if (
+      Math.abs(friendly_ship.x - this.x) < 50 &&
+      Math.abs(friendly_ship.y - this.y - 10) <= 50
+    ) {
+      timeLeft += 3;
+      Prizes=Prizes.filter((prize) => prize != this);
+    }
+    context.drawImage(this.img, this.x, this.y, 50, 50);
+  };
+  this.move = function () {
+    this.y = Math.min(this.y + PrizeSpeed, canvasHeight + 100);
+  };
+}
+
+function BananaPrize(x, y) {
+  this.x = x;
+  this.y = y;
+  this.img = new Image();
+  this.img.src = "resourses/prizes/PrizeBanana.png";
+  this.draw = function () {
+    if (
+      Math.abs(friendly_ship.x - this.x) < 50 &&
+      Math.abs(friendly_ship.y - this.y - 10) <= 50
+    ) {
+      FIRE_COUNT += 1;
+      Prizes=Prizes.filter((prize) => prize != this);
+    }
+    context.drawImage(this.img, this.x, this.y, 50, 50);
+  };
+  this.move = function () {
+    this.y = Math.min(this.y + PrizeSpeed, canvasHeight + 100);
+  };
+}
+
+function HeartPrize(x, y) {
+  this.x = x;
+  this.y = y;
+  this.img = new Image();
+  this.img.src = "resourses/prizes/PrizeHeart.png";
+  this.draw = function () {
+    if (
+      Math.abs(friendly_ship.x - this.x) < 50 &&
+      Math.abs(friendly_ship.y - this.y - 10) <= 50
+    ) {
+      lives += 1;
+      var _img = document.createElement("img");
+    _img.src = "resourses/logos/heartLogo.png";
+    var li = document.getElementById("heartLI");
+    li.appendChild(_img);
+    Prizes=Prizes.filter((prize) => prize != this);
+
+    }
+    context.drawImage(this.img, this.x, this.y, 50, 50);
+  };
+  this.move = function () {
+    this.y = Math.min(this.y + PrizeSpeed, canvasHeight + 100);
+  };
+}
+
+
+
+
+
 
 function SpaceShip(x, y) {
   this.x = x;
@@ -178,6 +253,20 @@ function FriendlyFire(x, y) {
           document.getElementById("Score").innerHTML = "Score:" + Score;
           HitSound.pause();
           HitSound.play();
+          rand=Math.random();
+          if (rand<0.24)
+          {
+            if (rand<0.08){
+              
+              Prizes.push(new HeartPrize(enemy_ships[i][j].x,enemy_ships[i][j].y));
+            }
+            else if(rand<0.16){
+              Prizes.push(new BananaPrize(enemy_ships[i][j].x,enemy_ships[i][j].y));
+            }
+            else{
+              Prizes.push(new ClockPrize(enemy_ships[i][j].x,enemy_ships[i][j].y));
+            }
+          }
           return;
         }
       }
@@ -528,7 +617,7 @@ function checkSetUp(
 }
 function resetElements() {
   Score = 0;
-
+  PrizeSpeed = 0.5;
   EnemyMove = "right";
   EnemyFireARR = [];
 
@@ -652,9 +741,20 @@ function updatePositions() {
   friendly_ship.moveFiers();
   enemy_fire();
   moveEnemyShips();
+  movePrizes();
   refreshTimer();
   checkEndGame();
+
 }
+function movePrizes() {
+  for (let i = 0; i < Prizes.length; i++) {
+    Prizes[i].draw();
+    Prizes[i].move();
+    if (Prizes[i].y > canvasHeight+100) {
+      Prizes = Prizes.filter((item) => item != Prizes[i]);
+    }
+
+  }}
 function refreshTimer() {
   ++timerCount;
   if (TIME_INTERVAL * timerCount >= 500) {
