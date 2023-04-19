@@ -47,6 +47,7 @@ const keyMap = {
   space: 32,
 };
 
+
 function on_press(element) {
   FIRE_KEY = keyMap[element.innerHTML];
 }

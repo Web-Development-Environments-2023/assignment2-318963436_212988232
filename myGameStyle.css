@@ -15,7 +15,7 @@ canvas {
 }
 
 #levelInDiv {
-  height: 90vh;
+  top: 0;
   min-width: 100vw;
 }
 #WelcomeForm,
@@ -313,7 +313,7 @@ body {
 .button-wrap {
   position: relative;
   text-align: center;
-  top: 50%;
+  top: 0;
   margin-top: -2.5em;
 }
 
@@ -323,6 +323,22 @@ body {
   }
 }
 
+input[type="number"]{
+  text-size-adjust: 100%;
+}
+
+.settingsTable{
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-background-origin: content-box;
+}
+
+
 .button-label {
   display: inline-block;
   padding: 1em 2em;
@@ -330,10 +346,10 @@ body {
   cursor: pointer;
   color: #292929;
   border-radius: 0.25em;
-  background: #000000;
   box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2), inset 0 -3px 0 rgba(0, 0, 0, 0.22);
   transition: 0.3s;
   user-select: none;
+  border: #a5e4ff 2px solid;
 }
 
 .button-label h1 {
@@ -389,6 +405,18 @@ body {
   background: #c21a15;
   color: #d9d9d9;
 }
+
+#Custom-button:checked + .button-label {
+  background: #cc7108;
+  color: #efefef;
+}
+
+#Custom-button:checked + .button-label:hover {
+  background: #cc7108;
+  color: #d9d9d9;
+}
+
+
 
 .hidden {
   display: none;

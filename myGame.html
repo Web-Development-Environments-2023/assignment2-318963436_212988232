@@ -98,22 +98,52 @@
   </div>
   <div id="Configuration" style="display: none">
     <form id="ConfigurationForm">
+        <svg width="100%" height="90%">
+          <text x="50%" y="80%" text-anchor="middle">
+            Level
+          </text>
+        </svg>
       <div class="container" id="levelInDiv">
         <div class="button-wrap">
-          <input type="radio" name="difficulty" id="easy-button" class="hidden radio-label" checked>
-          <label for="easy-button" class="button-label">
-            <h1>Easy</h1>
-          </label>
-          <input type="radio" name="difficulty" id="normal-button" class="hidden radio-label">
-          <label for="normal-button" class="button-label">
-            <h1>Normal</h1>
-          </label>
-          <input type="radio" name="difficulty" id="hard-button" class="hidden radio-label">
-          <label for="hard-button" class="button-label">
-            <h1>Hard</h1>
-          </label>
-          <br>
-          <input class="patterns-button" type="button" value="start" id="StartButton" />
+          <table class="settingsTable">
+            <tr> 
+              <td>
+                <input type="radio" name="difficulty" id="easy-button" class="hidden radio-label" checked>
+                <label for="easy-button" class="button-label">
+                  <h1>Easy</h1>
+                </label>
+              </td>
+              <td>
+                <input type="radio" name="difficulty" id="normal-button" class="hidden radio-label">
+                <label for="normal-button" class="button-label">
+                  <h1>Normal</h1>
+                </label>
+              </td>
+              <td>
+                <input type="radio" name="difficulty" id="hard-button" class="hidden radio-label">
+                <label for="hard-button" class="button-label">
+                  <h1>Hard</h1>
+                </label>
+              </td>
+            </tr>
+            </table>
+            <table class="settingsTable">
+            <tr>
+              <td>
+                <input type="radio" name="difficulty" id="Custom-button" class="hidden radio-label">
+                <label for="Custom-button" class="button-label">
+                  <h1>Custom Time</h1>
+                </label>
+              </td>
+              <td>
+                <input class="patterns-button" type="number" min="2" max="10" step="0.5" id="TimeCustom" placeholder="Min" value="2" style="display: none;"></input>
+              </td>
+              <td>
+                <input class="patterns-button" type="button" value="start" id="StartButton" />
+              </td>
+            </tr>
+          </table>
+      
         </div>
       </div>
     </form>
