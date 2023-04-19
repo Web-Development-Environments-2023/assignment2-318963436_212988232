@@ -6,7 +6,7 @@ var context; // used for drawing on the canvas
 var canvasWidth = 1300;
 var canvasHeight = 600;
 var TIME_INTERVAL = 2; // screen refresh interval in milliseconds
-var MultiplyFactor = 1.2;
+var MultiplyFactor = 1.5;
 var intervalTimer;
 var timeElapsed; // the number of seconds elapsed
 var Score;
@@ -15,7 +15,7 @@ var inGame = false;
 var enemy_ships;
 
 var rotateAngle = 0;
-var FRIENDLY_SPEED = 20;
+var FRIENDLY_SPEED = 10;
 var FRIENDLY_FIRE_SPEED = 2;
 var MAXSCORE = 250;
 var EnemyFireCount;
@@ -532,6 +532,8 @@ function logOut() {
   document.getElementById("Logout_menu").style.display = "none";
   document.getElementById("Score").style.display = "none";
   document.getElementById("TimerTable").style.display = "none";
+  document.getElementById("footerID").style.display = "flex";
+
   while (document.getElementById("heartLI").firstChild) {
     document
       .getElementById("heartLI")
@@ -662,6 +664,7 @@ function checkSetUp(
   return true;
 }
 function resetElements() {
+  document.getElementById("footerID").style.display = "none";
   Score = 0;
   PrizeSpeed = 0.5;
   Prizes = [];

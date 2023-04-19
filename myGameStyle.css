@@ -499,6 +499,20 @@ dialog {
 }
 
 #settingsDialog {
+
+footer {
+  background-color: rgba(0, 0, 0, 0.9);
+  color: #a5e4ff;
+  text-align: center;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  
+}
+
+
+#settingsDialog{
   background-image: url("resourses/backgrounds/settingsBackground.png");
   background-size: cover;
   background-position: center;
