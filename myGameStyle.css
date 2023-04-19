@@ -1,4 +1,3 @@
-
 body {
   font-family: Arial, sans-serif;
   background-image: url("resourses/backgrounds/background.png");
@@ -184,7 +183,9 @@ text {
   transform: translate(-50%, -50%);
 }
 
-input {
+input[type="text"],
+input[type="password"],
+input[type="radio"] {
   font-family: Lora;
   letter-spacing: 10px;
   color: #a5e4ff;
@@ -195,6 +196,17 @@ input {
   padding: 10px 20px;
   box-sizing: border-box;
   animation: inputAnimate 5s infinite alternate;
+}
+
+input[type="range"] {
+  width: 130%;
+
+  background: #a5e4ff;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: 0.2s;
+  transition: opacity 0.2s;
+  border-radius: 5px;
 }
 
 .Login_username {
@@ -326,21 +338,19 @@ body {
   }
 }
 
-input[type="number"]{
+input[type="number"] {
   text-size-adjust: 100%;
 }
 
-.settingsTable{
+.settingsTable {
   margin-left: auto;
   margin-right: auto;
 }
-
 
 input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-background-origin: content-box;
 }
-
 
 .button-label {
   display: inline-block;
@@ -419,8 +429,6 @@ input::-webkit-inner-spin-button {
   color: #d9d9d9;
 }
 
-
-
 .hidden {
   display: none;
 }
@@ -482,17 +490,15 @@ dialog {
   padding-top: 10px;
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   user-select: none;
+  background-color: rgba(255, 255, 255, 0.6);
   transition: bottom 0.4s;
 }
 
 .keyboard--hidden {
-
   bottom: -100%;
 }
 
-
-
-#settingsDialog{
+#settingsDialog {
   background-image: url("resourses/backgrounds/settingsBackground.png");
   background-size: cover;
   background-position: center;

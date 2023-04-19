@@ -33,7 +33,6 @@ const keyMap = {
   k: 75,
   l: 76,
   enter: 13,
-  done: 13,
   z: 90,
   x: 88,
   c: 67,
@@ -46,7 +45,6 @@ const keyMap = {
   "?": 191,
   space: 32,
 };
-
 
 function on_press(element) {
   FIRE_KEY = keyMap[element.innerHTML];
@@ -90,7 +88,6 @@ const Keyboard = {
     document.getElementById("settingsDialog").appendChild(this.elements.main);
 
     // Automatically use keyboard for elements with .use-keyboard-input
-    
   },
 
   _createKeys() {
@@ -127,7 +124,6 @@ const Keyboard = {
       "k",
       "l",
       "enter",
-      "done",
       "z",
       "x",
       "c",
@@ -164,6 +160,7 @@ const Keyboard = {
             FIRE_KEY = 8;
             clearKeyboard();
             keyElement.style.background = "rgba(0, 0, 0, 0.8)";
+            chnageFireKey(FIRE_KEY);
           });
 
           break;
@@ -176,9 +173,8 @@ const Keyboard = {
             FIRE_KEY = 13;
             clearKeyboard();
             keyElement.style.background = "rgba(0, 0, 0, 0.8)";
-            v;
+            chnageFireKey(FIRE_KEY);
           });
-
           break;
 
         case "space":
@@ -190,21 +186,7 @@ const Keyboard = {
             FIRE_KEY = 32;
             clearKeyboard();
             keyElement.style.background = "rgba(0, 0, 0, 0.8)";
-          });
-
-          break;
-
-        case "done":
-          keyElement.classList.add(
-            "keyboard__key--wide",
-            "keyboard__key--dark"
-          );
-          keyElement.innerHTML = createIconHTML("check_circle");
-
-          keyElement.addEventListener("click", () => {
             chnageFireKey(FIRE_KEY);
-
-            this.close();
           });
 
           break;
@@ -216,6 +198,7 @@ const Keyboard = {
             on_press(keyElement);
             clearKeyboard();
             keyElement.style.background = "rgba(0, 0, 0, 0.8)";
+            chnageFireKey(FIRE_KEY);
           });
 
           break;
