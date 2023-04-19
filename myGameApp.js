@@ -163,7 +163,7 @@ function FriendlySpaceShip(x, y) {
   this.img.src = "resourses/characters/happyMonkey.png";
   this.FIRE_ARR = [];
   this.draw = function () {
-    context.drawImage(this.img, this.x, this.y, 80, 80);
+    context.drawImage(this.img, this.x, this.y, 80, 100);
     for (var i = 0; i < this.FireNum; i++) {
       this.FIRE_ARR[i].draw();
     }
@@ -297,6 +297,7 @@ function EnemyFire(x, y) {
       EnemyFireCount = 4-level;
 
       FriendlyHitSound.play();
+      EnemyFireCount=level;
       friendly_ship.x = WidthDistanceFactor * Math.random() * canvasWidth;
       friendly_ship.y = canvasHeight - 80;
     }
@@ -758,11 +759,14 @@ function movePrizes() {
       continue;
     }
 
-    if (Prizes[i].y > canvasHeight+100) {
+  }
+  for (let i = 0; i < Prizes.length; i++) {
+    if (Prizes[i].y > canvasHeight) {
       Prizes = Prizes.filter((item) => item != Prizes[i]);
     }
+  }
 
-  }}
+}
 function refreshTimer() {
   ++timerCount;
   if (TIME_INTERVAL * timerCount >= 500) {
