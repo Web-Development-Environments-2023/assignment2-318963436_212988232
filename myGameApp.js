@@ -294,10 +294,10 @@ function EnemyFire(x, y) {
         .getElementById("heartLI")
         .removeChild(document.getElementById("heartLI").lastChild);
       EnemyFireARR = [];
-      EnemyFireCount = 4-level;
+      EnemyFireCount = 4-Math.max(level,1);
 
       FriendlyHitSound.play();
-      EnemyFireCount=level;
+      EnemyFireCount=Math.max(level,1);
       friendly_ship.x = WidthDistanceFactor * Math.random() * canvasWidth;
       friendly_ship.y = canvasHeight - 80;
     }
@@ -328,6 +328,35 @@ function setupGame() {
     "Admin",
     "Admin"
   );
+
+  document.getElementById("Custom-button").addEventListener("change", () => {
+    if (document.getElementById("Custom-button").checked) {
+      document.getElementById("TimeCustom").style.display = "flex";
+    }
+  });
+  document.getElementById("easy-button").addEventListener("change", () => {
+    if (document.getElementById("easy-button").checked) {
+      document.getElementById("TimeCustom").style.display = "none";
+    }
+  });
+  document.getElementById("normal-button").addEventListener("change", () => {
+    if (document.getElementById("normal-button").checked) {
+      document.getElementById("TimeCustom").style.display = "none";
+    }
+  });
+    
+  document.getElementById("hard-button").addEventListener("change", () => {
+    if (document.getElementById("hard-button").checked) {
+      document.getElementById("TimeCustom").style.display = "none";
+    }
+  });
+    
+    
+  
+  
+    
+  
+  
   for (var i = 0; i < 120; i++) {
     bananas.push(new Image());
     bananas[i].src = `resourses/bananas/banana` + i * 3 + ".png";
@@ -651,6 +680,14 @@ function resetElements() {
     EnemyFireSpeed = 0.9;
     timeLeft = 60;
   }
+  else if (level == 0) {
+    FIRE_COUNT = 3;
+    lives = 3;
+    EnemyFireCount = 1;
+    ENEMY_SPEED = 0.4;
+    EnemyFireSpeed = 0.5;
+    timeLeft = 60*document.getElementById("TimeCustom").value;
+  }
   while (document.getElementById("heartLI").childElementCount < lives) {
     var _img = document.createElement("img");
     _img.src = "resourses/logos/heartLogo.png";
@@ -683,6 +720,9 @@ function startGame() {
     level = 2;
   } else if (document.getElementById("hard-button").checked) {
     level = 3;
+  }
+  else if (document.getElementById("Custom-button").checked){
+    level=0
   }
   document.getElementById("Game").style.display = "flex";
   document.body.style.backgroundImage =
@@ -799,8 +839,11 @@ function checkEndGame() {
         return "easy";
       } else if (level == 2) {
         return "normal";
-      } else {
+      } else if (level == 3){
         return "hard";
+      }
+      else if (level == 0){
+        return "Custom";
       }
     };
     let gameScore = {
