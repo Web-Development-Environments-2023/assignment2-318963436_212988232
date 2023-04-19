@@ -185,7 +185,8 @@ text {
 
 input[type="text"],
 input[type="password"],
-input[type="radio"] {
+input[type="radio"] ,
+input[type="date"]{
   font-family: Lora;
   letter-spacing: 10px;
   color: #a5e4ff;
@@ -193,7 +194,6 @@ input[type="radio"] {
   font-weight: 700;
   border: 2px solid #a5e4ff;
   border-radius: 4px;
-  padding: 10px 20px;
   box-sizing: border-box;
   animation: inputAnimate 5s infinite alternate;
 }
@@ -218,6 +218,8 @@ input[type="range"] {
   background-position: 10px center;
   position: relative;
   left: 15%;
+  text-align: center;
+
 }
 
 .SignUp_username {
@@ -229,6 +231,7 @@ input[type="range"] {
   background-position: 10px center;
   position: relative;
   left: 15%;
+  text-align: center;
 }
 
 .Login_password {
@@ -240,6 +243,8 @@ input[type="range"] {
   background-position: 10px center;
   position: relative;
   left: 15%;
+  text-align: center;
+
 }
 
 .SignUp_password {
@@ -251,6 +256,8 @@ input[type="range"] {
   background-position: 10px center;
   position: relative;
   left: 15%;
+  text-align: center;
+
 }
 #SumbitLogin,
 #SumbitSignUp {
@@ -267,15 +274,19 @@ input[type="range"] {
   background-position: 10px center;
   position: relative;
   left: 15%;
+  text-align: center;
+
 }
 .SignUp_birthday {
-  padding: 10px 20px 10px 15px;
+  padding: 10px 20px 10px 25px;
   box-sizing: border-box;
   background-size: 30px 30px;
   background-repeat: no-repeat;
   background-position: 10px center;
   position: relative;
   left: 15%;
+  text-align: center;
+
 }
 
 #SignUpForm {
@@ -497,8 +508,6 @@ dialog {
 .keyboard--hidden {
   bottom: -100%;
 }
-
-#settingsDialog {
 
 footer {
   background-color: rgba(0, 0, 0, 0.9);
