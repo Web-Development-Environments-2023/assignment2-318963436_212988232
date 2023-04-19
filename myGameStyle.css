@@ -1,3 +1,4 @@
+
 body {
   font-family: Arial, sans-serif;
   background-image: url("resourses/backgrounds/background.png");
@@ -12,6 +13,8 @@ body {
 
 canvas {
   border: 10px solid rgb(244, 0, 0);
+  height: 100%;
+  width: 100%;
 }
 
 #levelInDiv {
@@ -483,7 +486,18 @@ dialog {
 }
 
 .keyboard--hidden {
+
   bottom: -100%;
+}
+
+
+
+#settingsDialog{
+  background-image: url("resourses/backgrounds/settingsBackground.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
 .keyboard__keys {

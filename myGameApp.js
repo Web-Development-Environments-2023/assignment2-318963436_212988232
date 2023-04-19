@@ -12,9 +12,8 @@ var timeElapsed; // the number of seconds elapsed
 var Score;
 var inGame = false;
 
-//
-var test;
-//
+var enemy_ships;
+
 
 var rotateAngle = 0;
 var FRIENDLY_SPEED = 20;
@@ -148,7 +147,27 @@ function HeartPrize(x, y) {
 }
 
 
-
+function resizeCanvas() {
+  if(enemy_ships!==undefined){
+    sizewidthFactor = window.innerWidth/canvasWidth;
+    sizeheightFactor = window.innerHeight*0.85/canvasHeight;
+    for (let i = 0; i < NumRows; i++) {
+      for (let j = 0; j < NumCols; j++) {
+        enemy_ships[i][j].x*=sizewidthFactor;
+        enemy_ships[i][j].y*=sizeheightFactor;
+      }
+    }
+    friendly_ship.x*=sizewidthFactor;
+    friendly_ship.y=(friendly_ship.y+80)*sizeheightFactor-80;
+  }
+  document.getElementById("header").style.height = window.innerHeight*0.15;
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight*0.85;
+  canvasHeight=canvas.height;
+  canvasWidth=canvas.width;
+  // redraw the canvas content if needed
+  context.fillRect(0, 0, canvas.width, canvas.height);
+}
 
 
 
@@ -163,9 +182,14 @@ function FriendlySpaceShip(x, y) {
   this.img.src = "resourses/characters/happyMonkey.png";
   this.FIRE_ARR = [];
   this.draw = function () {
-    context.drawImage(this.img, this.x, this.y, 80, 100);
+    context.drawImage(this.img, this.x, this.y, 80, 80);
     for (var i = 0; i < this.FireNum; i++) {
+      firetemp=this.FIRE_ARR[i];
       this.FIRE_ARR[i].draw();
+      if(!(this.FIRE_ARR[i]!=undefined && firetemp==this.FIRE_ARR[i])){
+        i--;
+      }
+
     }
   };
   this.moveDown = function () {
@@ -352,10 +376,11 @@ function setupGame() {
   });
     
     
-  
-  
-    
-  
+  canvas = document.getElementById("theCanvas");
+  context = canvas.getContext("2d");
+
+  window.addEventListener("resize", resizeCanvas);
+  resizeCanvas();  
   
   for (var i = 0; i < 120; i++) {
     bananas.push(new Image());
@@ -385,10 +410,7 @@ function setupGame() {
   });
 
   // get the canvas element
-  canvas = document.getElementById("theCanvas");
-  canvas.width = canvasWidth;
-  canvas.height = canvasHeight;
-  context = canvas.getContext("2d");
+
 
   // get sounds
   HitSound = document.getElementById("Hit");
@@ -410,7 +432,6 @@ function setupGame() {
 
   // get the settings dialog
   settingsDialog = document.getElementById("settingsDialog");
-  settingsCancelBtn = document.getElementById("settingsCancelBtn");
 
   document
     .getElementById("Settings_menu")
@@ -419,12 +440,7 @@ function setupGame() {
       settingsDialog.showModal();
     });
 
-  settingsCancelBtn.addEventListener("click", function () {
-    settingsDialog.close();
-    if (inGame) {
-      startTimer();
-    }
-  });
+
 
   // get the about dialog
   aboutDialog = document.getElementById("AboutDialog");
@@ -955,4 +971,7 @@ function moveEnemyShips() {
     EnemyFireARR[i].draw();
   }
 }
+
+
+
 window.addEventListener("load", setupGame, false);

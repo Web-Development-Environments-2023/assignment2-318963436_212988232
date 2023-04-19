@@ -29,7 +29,7 @@
   <table>
     <tr>
       <td>
-        <div id="header" style="height: 100px;">
+        <div id="header" >
           <nav>
             <ul id="menuUL" >
               <li><a href="#" id="Home_menu"><img src="resourses/logos/homeLogo.png"></a></li>
@@ -149,26 +149,13 @@
     </form>
   </div>
 
-  <dialog id="settingsDialog">
+  <dialog id="settingsDialog" style="background-image: resourses\backgrounds\settingsBackground.png;">
     <svg width="100%" height="20%">
       <text x="50%" y="75%" text-anchor="middle">
         settings
       </text>
     </svg>
     <form id="Settings_Form">
-      <label for="difficulty">Difficulty:</label>
-      <select name="difficulty" id="difficulty">
-        <option value="easy">Easy</option>
-        <option value="medium">Medium</option>
-        <option value="hard">Hard</option>
-      </select>
-      <label for="sound">Sound:</label>
-      <input type="range" name="sound" id="sound" min="-10" max="110" value="50">
-      <br>
-      <button type="submit">Save</button>
-      <button type="button" id="settingsCancelBtn">Cancel</button>
-    <textarea class="use-keyboard-input" style="position: absolute; top: 130px; right: 30px; width: 300px;"></textarea>
-
     <script src="Keyboard.js"></script>
 
     </form>
