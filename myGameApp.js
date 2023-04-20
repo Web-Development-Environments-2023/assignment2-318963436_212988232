@@ -405,6 +405,7 @@ function setupGame() {
   document.getElementById("Logout_menu").addEventListener("click", logOut);
   document.getElementById("StartButton").addEventListener("click", startGame);
   document.getElementById("Restart_menu").addEventListener("click", startGame);
+  document.getElementById("Restart_btn").addEventListener("click", startGame);
   document
     .getElementById("Exit_btn")
     .addEventListener("click", goConfiguration);
