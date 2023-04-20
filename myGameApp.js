@@ -6,7 +6,7 @@ var context; // used for drawing on the canvas
 var canvasWidth = 1300;
 var canvasHeight = 600;
 var TIME_INTERVAL = 2; // screen refresh interval in milliseconds
-var MultiplyFactor = 1.5;
+var MultiplyFactor = 1.35;
 var intervalTimer;
 var timeElapsed; // the number of seconds elapsed
 var Score;
