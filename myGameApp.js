@@ -93,7 +93,7 @@ function ClockPrize(x, y) {
       Prizes = Prizes.filter((prize) => prize != this);
       prizeSound.play();
     }
-    context.drawImage(this.img, this.x, this.y, 50, 50);
+    context.drawImage(this.img, this.x, this.y, 40, 40);
   };
   this.move = function () {
     this.y = Math.min(this.y + PrizeSpeed, canvasHeight + 100);
@@ -114,7 +114,7 @@ function BananaPrize(x, y) {
       Prizes = Prizes.filter((prize) => prize != this);
       prizeSound.play();
     }
-    context.drawImage(this.img, this.x, this.y, 50, 50);
+    context.drawImage(this.img, this.x, this.y, 40, 40);
   };
   this.move = function () {
     this.y = Math.min(this.y + PrizeSpeed, canvasHeight + 100);
@@ -139,7 +139,7 @@ function HeartPrize(x, y) {
       Prizes = Prizes.filter((prize) => prize != this);
       prizeSound.play();
     }
-    context.drawImage(this.img, this.x, this.y, 50, 50);
+    context.drawImage(this.img, this.x, this.y, 40, 40);
   };
   this.move = function () {
     this.y = Math.min(this.y + PrizeSpeed, canvasHeight + 100);
@@ -404,7 +404,7 @@ function setupGame() {
   document.getElementById("Home_menu").addEventListener("click", goHome);
   document.getElementById("Logout_menu").addEventListener("click", logOut);
   document.getElementById("StartButton").addEventListener("click", startGame);
-  document.getElementById("Restart_btn").addEventListener("click", restartGame);
+  document.getElementById("Restart_menu").addEventListener("click", startGame);
   document
     .getElementById("Exit_btn")
     .addEventListener("click", goConfiguration);
@@ -560,6 +560,8 @@ function muteDivs() {
   document.getElementById("EndGame").style.display = "none";
   document.getElementById("Score").style.display = "none";
   document.getElementById("TimerTable").style.display = "none";
+  document.getElementById("Restart_menu").style.display = "none";
+  
 
   while (document.getElementById("heartLI").firstChild) {
     document
@@ -574,9 +576,9 @@ function sumbitLogin() {
   let username = document.getElementById("Login_username").value;
   let password = document.getElementById("Login_password").value;
   if (users[username] == undefined) {
-    document.getElementById("Login_username").style.color = "red";
+    alert("User not found");
   } else if (users[username].password != password) {
-    document.getElementById("Login_password").style.color = "red";
+    alert("Wrong password");
   } else {
     logedInUser = users[username];
     goConfiguration();
@@ -612,9 +614,7 @@ function sumbitSignUp() {
       firstname,
       lastname
     );
-    logedInUser = users[username];
-    document.getElementById("Home_menu").style.color = "black";
-    goConfiguration();
+    goLogin();
   }
 }
 
@@ -632,7 +632,7 @@ function checkSetUp(
     alert("Username already exist");
     return false;
   }
-  const passwordRegex = /^([A-Za-z0-9]){8,}$/;
+  const passwordRegex = /^(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{8,}$/;
   if (!password.match(passwordRegex)) {
     alert(
       "Password must include at least 8 characters with numbers and letters." +
@@ -735,6 +735,8 @@ function resetElements() {
 function startGame() {
   muteDivs();
   document.getElementById("Score").style.display = "flex";
+  document.getElementById("Restart_menu").style.display = "flex";
+
   if (document.getElementById("easy-button").checked) {
     level = 1;
   } else if (document.getElementById("normal-button").checked) {

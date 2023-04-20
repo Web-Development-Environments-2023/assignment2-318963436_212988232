@@ -43,10 +43,11 @@
         <div id="header" >
           <nav>
             <ul id="menuUL" >
-              <li><a href="#" id="Home_menu"><img src="resourses/logos/homeLogo.png"></a></li>
-              <li><a href="#" id="Logout_menu" style="display: none;"><img src="resourses/logos/logoutLogo.png"></a></li>
-              <li><a href="#" id="About_menu"><img src="resourses/logos/aboutLogo.png"></a></li>
-              <li><a href="#" id="Settings_menu"><img src="resourses/logos/SettingsLogo.png"></a></li>
+              <li><a href="#" id="Home_menu" title="Home"><img src="resourses/logos/homeLogo.png"></a></li>
+              <li><a href="#" id="Logout_menu" style="display: none;" title="Logout"><img src="resourses/logos/logoutLogo.png"></a></li>
+              <li><a href="#" id="About_menu"  title="About"><img src="resourses/logos/aboutLogo.png"></a></li>
+              <li><a href="#" id="Settings_menu"  title="Settings"><img src="resourses/logos/SettingsLogo.png"></a></li>
+              <li><a href="#" id="Restart_menu" style="display: none;"  title="Reset" ><img src="resourses/logos/restartLogo.png"></a></li>
               <li><text id="Score" style="display: none;"></text></li>
               <li><table id="TimerTable" style="display: none;"><tr>
                 <td><img id="TimerImg" src="resourses/logos/TimerLogo.png"></td>
@@ -161,7 +162,6 @@
   </div>
 
   <dialog id="settingsDialog" style="background-image: resourses\backgrounds\settingsBackground.png;">
-    <button type="button" class="CancelBtn" ><img src="resourses/logos/ExitLogo.png" onclick="closedialogs()"></button>
     <svg width="100%" height="20%">
       <text x="50%" y="75%" text-anchor="middle">
         settings
@@ -177,21 +177,19 @@
         </td>
       </tr>
     </table>
-    
     <form id="Settings_Form">
-      <div style="text-align: center;">
-        <br><br>
-    <h1 style="color: #ffffff;font-style: italic;">choose key to shot</h1>
+      <h1>
+        sss
+      </h1>
     <script src="Keyboard.js"></script>
-    </div>
+
     </form>
   
   </dialog>
 
   <dialog id="AboutDialog">
-    <button type="button" class="CancelBtn" ><img src="resourses/logos/ExitLogo.png" onclick="closedialogs()"></button>
-    <svg width="100%" height="15%">
-      <text x="50%" y="83%" text-anchor="middle">
+    <svg width="100%" height="20%">
+      <text x="50%" y="75%" text-anchor="middle">
         About
       </text>
     </svg>
@@ -218,6 +216,8 @@
           Have fun! <br>
 
       </p>
+    <input type="button" id="aboutCancelBtn">Cancel</input>
+    
   </dialog>
 
   <div id="EndGame" style="display: none;">
