@@ -463,20 +463,14 @@ function setupGame() {
 
   window.addEventListener("click", function (event) {
     if (event.target == aboutDialog || event.target == settingsDialog) {
-      closeDialog();
-      if (inGame) {
-        startTimer();
-      }
+      closedialogs();
     }
   });
 
   // Close the dialog when the user presses the ESC key
   window.addEventListener("keydown", function (event) {
     if (event.key === "Escape") {
-      closeDialog();
-      if (inGame) {
-        startTimer();
-      }
+      closedialogs();
     }
   });
 }
@@ -561,7 +555,6 @@ function muteDivs() {
   document.getElementById("Score").style.display = "none";
   document.getElementById("TimerTable").style.display = "none";
   document.getElementById("Restart_menu").style.display = "none";
-  
 
   while (document.getElementById("heartLI").firstChild) {
     document
@@ -942,10 +935,6 @@ function checkEndGame() {
 }
 function restartGame() {
   startGame();
-}
-function closeDialog() {
-  aboutDialog.close();
-  settingsDialog.close();
 }
 
 function moveEnemyShips() {
