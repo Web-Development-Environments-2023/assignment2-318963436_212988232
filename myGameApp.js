@@ -234,7 +234,6 @@ function EnemySpaceShip(x, y, img) {
 function FriendlyFire(x, y) {
   this.x = x;
   this.y = y;
-  this.FIRE_ARR = [];
   this.isAlive = true;
 
   this.draw = function () {
@@ -256,7 +255,7 @@ function FriendlyFire(x, y) {
       50
     );
     if (friendly_ship.FireNum == 0) {
-      this.FIRE_ARR = [];
+      friendly_ship.FIRE_ARR = [];
     }
     for (let i = 0; i < NumRows; i++) {
       for (let j = 0; j < NumCols; j++) {
@@ -293,7 +292,7 @@ function FriendlyFire(x, y) {
             }
           }
           if (friendly_ship.FireNum == 0) {
-            this.FIRE_ARR = [];
+            friendly_ship.FIRE_ARR = [];
           }
           return;
         }
