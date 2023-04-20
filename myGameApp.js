@@ -12,11 +12,13 @@ var timeElapsed; // the number of seconds elapsed
 var Score;
 var inGame = false;
 
+PressedKeys={};
+var onfire = false;
 var enemy_ships;
 
 var rotateAngle = 0;
-var FRIENDLY_SPEED = 10;
-var FRIENDLY_FIRE_SPEED = 2;
+var FRIENDLY_SPEED = 4;
+var FRIENDLY_FIRE_SPEED = 2.8;
 var MAXSCORE = 250;
 var EnemyFireCount;
 var EnemyFireSpeed;
@@ -358,6 +360,32 @@ function setupGame() {
     "Admin"
   );
 
+
+	addEventListener(
+		"keydown",
+		function(e) {
+			if(e.keyCode==FIRE_KEY){
+				if(!onfire){
+					PressedKeys[e.keyCode] = true;
+
+					onfire=true
+				}
+
+			}
+			else{
+				PressedKeys[e.keyCode] = true;
+			}
+		},
+		false
+	);
+	addEventListener("keyup",function(e) 
+  {
+			if(e.keyCode==FIRE_KEY){
+				onfire=false
+			}
+			PressedKeys[e.keyCode] = false;
+		},false	);
+
   document.getElementById("Custom-button").addEventListener("change", () => {
     if (document.getElementById("Custom-button").checked) {
       document.getElementById("TimeCustom").style.display = "flex";
@@ -410,11 +438,6 @@ function setupGame() {
   document
     .getElementById("Exit_btn")
     .addEventListener("click", goConfiguration);
-  document.addEventListener("keydown", function (event) {
-    keyDownHandler(event);
-  });
-
-  // get the canvas element
 
   // get sounds
   HitSound = document.getElementById("Hit");
@@ -476,33 +499,6 @@ function setupGame() {
     }
   });
 }
-
-function keyDownHandler(event) {
-  switch (event.keyCode) {
-    case LEFT_KEY: // left arrow
-      friendly_ship.moveLeft();
-      break;
-    case RIGHT_KEY: // right arrow
-      friendly_ship.moveRight();
-      break;
-    case UP_KEY: // up arrow
-      friendly_ship.moveUp();
-      break;
-    case DOWN_KEY: // down arrow
-      friendly_ship.moveDown();
-      break;
-    case FIRE_KEY: // space bar
-      if (FIRE_COUNT > 0) {
-        friendly_ship.fire();
-        if (BananaSound.played.length > 0){
-        BananaSound.pause();
-        }
-        BananaSound.play();
-      }
-      break;
-  }
-}
-
 function LoadGame() {
   muteDivs();
   document.getElementById("Game").style.display = "flex";
@@ -808,6 +804,32 @@ function updatePositions() {
   movePrizes();
   refreshTimer();
   checkEndGame();
+  moveMonkey();
+}
+
+function moveMonkey() {
+  if (PressedKeys[LEFT_KEY]){
+    friendly_ship.moveLeft();
+  }
+  if (PressedKeys[RIGHT_KEY]){
+    friendly_ship.moveRight();
+  }
+  if (PressedKeys[UP_KEY]){
+    friendly_ship.moveUp();
+  }
+  if (PressedKeys[DOWN_KEY]){
+    friendly_ship.moveDown();
+  }
+  if (PressedKeys[FIRE_KEY] && onfire == true){
+    if (FIRE_COUNT > 0) {
+      friendly_ship.fire();
+      if (BananaSound.played.length > 0){
+      BananaSound.pause();
+      }
+      BananaSound.play();
+    }    onfire = false;
+    
+  }
 }
 function movePrizes() {
   for (let i = 0; i < Prizes.length; i++) {
