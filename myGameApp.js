@@ -273,7 +273,9 @@ function FriendlyFire(x, y) {
           FIRE_COUNT++;
           Score += 5 * (4 - i);
           document.getElementById("Score").innerHTML = "Score:" + Score;
+          if (HitSound.played.length > 0) {
           HitSound.pause();
+        }
           HitSound.play();
           rand = Math.random();
           if (rand < 0.24) {
@@ -492,7 +494,9 @@ function keyDownHandler(event) {
     case FIRE_KEY: // space bar
       if (FIRE_COUNT > 0) {
         friendly_ship.fire();
+        if (BananaSound.played.length > 0){
         BananaSound.pause();
+        }
         BananaSound.play();
       }
       break;
@@ -525,7 +529,9 @@ function logOut() {
   inGame = false;
   canvas.style.display = "none";
   logedInUser = undefined;
+  if (BackgroundSound.played.length > 0){
   BackgroundSound.pause();
+}
   document.getElementById("Home_menu").style.display = "flex";
   document.getElementById("Logout_menu").style.display = "none";
   document.getElementById("Score").style.display = "none";
@@ -845,7 +851,9 @@ function checkEndGame() {
     muteDivs();
     document.getElementById("EndGame").style.display = "flex";
     stopTimer();
+    if (BackgroundSound.played.length > 0){
     BackgroundSound.pause();
+  }
     let levelfunc = function (level) {
       if (level == 1) {
         return "easy";
