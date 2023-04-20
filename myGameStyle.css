@@ -185,17 +185,19 @@ text {
 
 input[type="text"],
 input[type="password"],
-input[type="radio"] {
+input[type="radio"] ,
+input[type="date"]{
   font-family: Lora;
   letter-spacing: 10px;
-  color: #a5e4ff;
   font-size: 20px;
   font-weight: 700;
   border: 2px solid #a5e4ff;
   border-radius: 4px;
-  padding: 10px 20px;
   box-sizing: border-box;
   animation: inputAnimate 5s infinite alternate;
+}
+::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+  color: black;
 }
 
 input[type="range"] {
@@ -218,6 +220,8 @@ input[type="range"] {
   background-position: 10px center;
   position: relative;
   left: 15%;
+  text-align: center;
+
 }
 
 .SignUp_username {
@@ -229,6 +233,7 @@ input[type="range"] {
   background-position: 10px center;
   position: relative;
   left: 15%;
+  text-align: center;
 }
 
 .Login_password {
@@ -240,6 +245,8 @@ input[type="range"] {
   background-position: 10px center;
   position: relative;
   left: 15%;
+  text-align: center;
+
 }
 
 .SignUp_password {
@@ -251,6 +258,8 @@ input[type="range"] {
   background-position: 10px center;
   position: relative;
   left: 15%;
+  text-align: center;
+
 }
 #SumbitLogin,
 #SumbitSignUp {
@@ -267,15 +276,24 @@ input[type="range"] {
   background-position: 10px center;
   position: relative;
   left: 15%;
+  text-align: center;
+
 }
 .SignUp_birthday {
-  padding: 10px 20px 10px 15px;
+  padding: 10px 20px 10px 25px;
   box-sizing: border-box;
   background-size: 30px 30px;
   background-repeat: no-repeat;
   background-position: 10px center;
   position: relative;
   left: 15%;
+  text-align: center;
+
+}
+
+
+.SignUp_birthday{
+  background-image: url("resourses/logos/birthdayLogo.png");
 }
 
 #SignUpForm {
@@ -288,12 +306,13 @@ input[type="range"] {
   }
 
   100% {
-    background-color: hsla(189, 68%, 75%, 0%);
+    background-color: hsla(189, 68%, 75%, 60%);
   }
 }
 
 ::-webkit-calendar-picker-indicator {
-  background-image: url("resourses/logos/birthdayLogo.png");
+  background-image: none;
+  width: 10%;
   cursor: pointer;
 }
 
@@ -463,17 +482,24 @@ input::-webkit-inner-spin-button {
 
 dialog {
   width: 60vw;
-  height: 60vh;
+  height: 80vh;
   padding: 20px;
   position: fixed;
   top: 50%;
   left: 50%;
+  font-family: Lora;
+  color: #a5e4ff;
+  font-size: 18px;
+  font-weight: 700;
   transform: translate(-50%, -50%);
   padding: 20px;
   background-color: #fff;
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 9999;
+  
+  overflow: hidden;
+
 }
 /* Style the overlay */
 .overlay {
@@ -510,6 +536,15 @@ footer {
 
 #settingsDialog {
   background-image: url("resourses/backgrounds/settingsBackground.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+#AboutDialog{
+  color: white;
+  background-image: url("resourses/backgrounds/aboutBackground.jpg");
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
