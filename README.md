@@ -1,1 +1,4 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-c66648af7eb3fe8bc4f294546bfd86ef473780cde1dea487d3c4ff354943c9ae.svg)](https://classroom.github.com/online_ide?assignment_repo_id=10718259&assignment_repo_type=AssignmentRepo)
+link to website [here](https://web-development-environments-2023.github.io/assignment2-318963436_212988232/)
+
+Yuval Gorodissly - 318963436
+Noam Azulay - 212988232
