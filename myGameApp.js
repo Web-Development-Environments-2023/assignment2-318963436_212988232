@@ -57,6 +57,7 @@ var FriendlyHitSound;
 var WinGameSound;
 var LoseGameSound;
 var SliderSound;
+var PrizeSound;
 
 var bananas = [];
 var enemy_imgs = [];
@@ -68,9 +69,8 @@ var timeLeft; // the amount of time left in seconds
 var timeElapsed; // the number of seconds elapsed
 
 // variables for dialog boxes
-var settingsCancelBtn;
+
 var settingsDialog;
-var aboutCancelBtn;
 var aboutDialog;
 
 var Prizes = [];
@@ -91,6 +91,7 @@ function ClockPrize(x, y) {
     ) {
       timeLeft += 3;
       Prizes = Prizes.filter((prize) => prize != this);
+      prizeSound.play();
     }
     context.drawImage(this.img, this.x, this.y, 50, 50);
   };
@@ -111,6 +112,7 @@ function BananaPrize(x, y) {
     ) {
       FIRE_COUNT += 1;
       Prizes = Prizes.filter((prize) => prize != this);
+      prizeSound.play();
     }
     context.drawImage(this.img, this.x, this.y, 50, 50);
   };
@@ -135,6 +137,7 @@ function HeartPrize(x, y) {
       var li = document.getElementById("heartLI");
       li.appendChild(_img);
       Prizes = Prizes.filter((prize) => prize != this);
+      prizeSound.play();
     }
     context.drawImage(this.img, this.x, this.y, 50, 50);
   };
@@ -233,6 +236,7 @@ function FriendlyFire(x, y) {
   this.y = y;
   this.FIRE_ARR = [];
   this.isAlive = true;
+
   this.draw = function () {
     if (this.isAlive == false) {
       return;
@@ -251,7 +255,9 @@ function FriendlyFire(x, y) {
       50,
       50
     );
-
+    if (friendly_ship.FireNum == 0) {
+      this.FIRE_ARR = [];
+    }
     for (let i = 0; i < NumRows; i++) {
       for (let j = 0; j < NumCols; j++) {
         if (
@@ -285,6 +291,9 @@ function FriendlyFire(x, y) {
                 new ClockPrize(enemy_ships[i][j].x, enemy_ships[i][j].y)
               );
             }
+          }
+          if (friendly_ship.FireNum == 0) {
+            this.FIRE_ARR = [];
           }
           return;
         }
@@ -414,6 +423,7 @@ function setupGame() {
   BackgroundSound = document.getElementById("background_music");
   WinGameSound = document.getElementById("WinGame");
   LoseGameSound = document.getElementById("LoseGame");
+  prizeSound = document.getElementById("prizeSound");
   // Play the audio on loop
   BackgroundSound.addEventListener(
     "ended",
@@ -430,6 +440,7 @@ function setupGame() {
     BananaSound.volume = this.value / 100;
     WinGameSound.volume = this.value / 100;
     LoseGameSound.volume = this.value / 100;
+    prizeSound.volume = this.value / 100;
   });
   // get the settings dialog
   settingsDialog = document.getElementById("settingsDialog");
@@ -448,13 +459,6 @@ function setupGame() {
   document.getElementById("About_menu").addEventListener("click", function () {
     stopTimer();
     aboutDialog.showModal();
-  });
-
-  aboutCancelBtn.addEventListener("click", function () {
-    aboutDialog.close();
-    if (inGame) {
-      startTimer();
-    }
   });
 
   window.addEventListener("click", function (event) {
@@ -965,6 +969,13 @@ function moveEnemyShips() {
       continue;
     }
     EnemyFireARR[i].draw();
+  }
+}
+function closedialogs() {
+  aboutDialog.close();
+  settingsDialog.close();
+  if (inGame) {
+    startTimer();
   }
 }
 

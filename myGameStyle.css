@@ -185,8 +185,8 @@ text {
 
 input[type="text"],
 input[type="password"],
-input[type="radio"] ,
-input[type="date"]{
+input[type="radio"],
+input[type="date"] {
   font-family: Lora;
   letter-spacing: 10px;
   font-size: 20px;
@@ -196,7 +196,8 @@ input[type="date"]{
   box-sizing: border-box;
   animation: inputAnimate 5s infinite alternate;
 }
-::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+::placeholder {
+  /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: black;
 }
 
@@ -221,7 +222,6 @@ input[type="range"] {
   position: relative;
   left: 15%;
   text-align: center;
-
 }
 
 .SignUp_username {
@@ -246,7 +246,6 @@ input[type="range"] {
   position: relative;
   left: 15%;
   text-align: center;
-
 }
 
 .SignUp_password {
@@ -259,7 +258,6 @@ input[type="range"] {
   position: relative;
   left: 15%;
   text-align: center;
-
 }
 #SumbitLogin,
 #SumbitSignUp {
@@ -277,7 +275,6 @@ input[type="range"] {
   position: relative;
   left: 15%;
   text-align: center;
-
 }
 .SignUp_birthday {
   padding: 10px 20px 10px 25px;
@@ -288,11 +285,9 @@ input[type="range"] {
   position: relative;
   left: 15%;
   text-align: center;
-
 }
 
-
-.SignUp_birthday{
+.SignUp_birthday {
   background-image: url("resourses/logos/birthdayLogo.png");
 }
 
@@ -482,10 +477,10 @@ input::-webkit-inner-spin-button {
 
 dialog {
   width: 60vw;
-  height: 80vh;
+  height: 70vh;
   padding: 20px;
-  position: fixed;
-  top: 50%;
+  position: absolute;
+  top: 60%;
   left: 50%;
   font-family: Lora;
   color: #a5e4ff;
@@ -493,13 +488,12 @@ dialog {
   font-weight: 700;
   transform: translate(-50%, -50%);
   padding: 20px;
-  background-color: #fff;
+  background-color: rgba(255, 255, 255, 0.5);
   border-radius: 5px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   z-index: 9999;
-  
-  overflow: hidden;
 
+  overflow: hidden;
 }
 /* Style the overlay */
 .overlay {
@@ -513,7 +507,9 @@ dialog {
 }
 
 .keyboard {
-  padding-top: 10px;
+  width: 100%;
+  padding: 5px 0;
+
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
   user-select: none;
   background-color: rgba(255, 255, 255, 0.6);
@@ -542,7 +538,7 @@ footer {
   background-attachment: fixed;
 }
 
-#AboutDialog{
+#AboutDialog {
   color: white;
   background-image: url("resourses/backgrounds/aboutBackground.jpg");
   background-size: cover;
@@ -556,8 +552,8 @@ footer {
 }
 
 .keyboard__key {
-  height: 20px;
-  width: 3%;
+  height: 45px;
+  width: 6%;
   max-width: 90px;
   margin: 3px;
   border-radius: 4px;
@@ -608,70 +604,8 @@ footer {
   background: rgba(0, 0, 0, 0.25);
 }
 
-.keyboard {
-  padding-top: 10px;
-  box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
-  user-select: none;
-  transition: bottom 0.4s;
-}
-
-.keyboard--hidden {
-  bottom: -100%;
-}
-
-.keyboard__keys {
-  text-align: center;
-}
-
-.keyboard__key {
-  height: 20px;
-  width: 3%;
-  max-width: 90px;
-  margin: 3px;
-  border-radius: 4px;
-  border: none;
-  background: rgba(0, 0, 0, 0.4);
-  color: #a5e4ff;
-  font-size: 1.05rem;
-  outline: none;
-  cursor: pointer;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  vertical-align: top;
-  padding: 0;
-  -webkit-tap-highlight-color: transparent;
-  position: relative;
-}
-
-.keyboard__key:active {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.keyboard__key--wide {
-  width: 12%;
-}
-
-.keyboard__key--extra-wide {
-  width: 36%;
-  max-width: 500px;
-}
-
-.keyboard__key--activatable::after {
-  content: "";
-  top: 10px;
-  right: 10px;
+.CancelBtn {
+  background-color: transparent;
   position: absolute;
-  width: 8px;
-  height: 8px;
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 50%;
-}
-
-.keyboard__key--active::after {
-  background: #08ff00;
-}
-
-.keyboard__key--dark {
-  background: rgba(0, 0, 0, 0.25);
+  right: 2%;
 }
