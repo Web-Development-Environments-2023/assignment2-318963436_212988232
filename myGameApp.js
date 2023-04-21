@@ -904,7 +904,7 @@ function checkEndGame() {
       if (a.score !== b.score) {
         return b.score - a.score; // Sort by score in descending order
       } else {
-        return a.timeElapsed - b.timeElapsed; // If scores are equal, sort by time in ascending order
+        return a.time - b.time; // If scores are equal, sort by time in ascending order
       }
     });
     for (let i = 0; i < Math.min(logedInUser.lastscores.length, 5); i++) {
