@@ -17,7 +17,7 @@ var onfire = false;
 var enemy_ships;
 
 var rotateAngle = 0;
-var FRIENDLY_SPEED = 4;
+var FRIENDLY_SPEED = 2.4;
 var FRIENDLY_FIRE_SPEED = 2.8;
 var MAXSCORE = 250;
 var EnemyFireCount;
