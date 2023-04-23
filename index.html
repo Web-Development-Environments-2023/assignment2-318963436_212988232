@@ -1,0 +1,318 @@
+<html>
+
+<head>
+  <title id="Spaceship1">Spaceship Game</title>
+  <link rel="stylesheet" type="text/css" href="myGameStyle.css">
+  <link rel="icon" type="image/x-icon" href="resourses/logos/My project.png">
+  <script src="myGameApp.js"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="shortcut icon" href="/assets/favicon.ico">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+
+
+<body>
+  <div id="footerID">
+    <footer >
+      <p>
+        Designed by Noam Azulay (212988232) and Yuval Gorodissky (318963436). Contact us at <a href="mailto:noamaz@post.bgu.ac.il">noamaz@post.bgu.ac.il</a> or at <a href="mailto:yuvalgor@post.bgu.ac.il">yuvalgor@post.bgu.ac.il</a>.  
+      </p>
+    </footer>
+  </div>
+
+  
+  <audio id = "background_music" preload = "auto">
+    <source src = "resourses/sounds/background.mp3" type = "audio/ogg"></audio>
+ <audio id = "FriendlyFire" preload = "auto">
+    <source src = "resourses/sounds/FreindlyFire1.mp3" type = "audio/ogg"></audio>
+ <audio id = "Hit" preload = "auto">
+    <source src = "resourses/sounds/Hit3.mp3" type = "audio/ogg"></audio>
+  <audio id = "FriendlyHit" preload = "auto">
+    <source src = "resourses/sounds/Hit1.mp3" type = "audio/ogg"></audio>
+  <audio id = "WinGame" preload = "auto">
+    <source src = "resourses/sounds/Win1.mp3" type = "audio/ogg"></audio>
+  <audio id = "LoseGame" preload = "auto">
+    <source src = "resourses/sounds/loss1.mp3" type = "audio/ogg"></audio>
+    <audio id = "prizeSound" preload = "auto">
+      <source src = "resourses/sounds/prizeTakenSound.mp3" type = "audio/ogg"></audio>
+  <table>
+    <tr>
+      <td>
+        <div id="header" >
+          <nav>
+            
+            <ul id="menuUL" >
+              <li><a href="#" id="Home_menu" title="Home"><img src="resourses/logos/homeLogo.png"></a></li>
+              <li><a href="#" id="Logout_menu" style="display: none;" title="Logout"><img src="resourses/logos/logoutLogo.png"></a></li>
+              <li><a href="#" id="About_menu"  title="About"><img src="resourses/logos/aboutLogo.png"></a></li>
+              <li><a href="#" id="Settings_menu"  title="Settings"><img src="resourses/logos/SettingsLogo.png"></a></li>
+              <li><a href="#" id="Restart_menu" style="display: none;"  title="Reset" ><img src="resourses/logos/restartLogo.png"></a></li>
+              <li><text id="Score" style="display: none;"></text></li>
+              <li><table id="TimerTable" style="display: none;"><tr>
+                <td><img id="TimerImg" src="resourses/logos/TimerLogo.png"></td>
+                <td><text id="TimerText"></text></td>
+              </tr> </table>
+              </text></li>
+              <li id="heartLI" style="display: none;"></li>
+            </ul>
+          </nav>
+        </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div class="Game" id="Game" style="display: none">
+          <canvas id="theCanvas"> </canvas>
+        </div>
+      </td>
+      
+    </tr>
+  </table>
+  
+
+  <div id="Welcome" class="start">
+    <form id="WelcomeForm">
+      <div class="patterns" id="WelcomeInDiv">
+        <svg width="100%" height="35%">
+          <text x="50%" y="85%" text-anchor="middle">
+            Welcome
+          </text>
+        </svg>
+        <table id="logs_btns">
+          <tr>
+            <td>
+              <input class="patterns-button" type="button" id="Login_btn" value="Login"></input>
+            </td>
+            <td>
+              <input class="patterns-button" type="button" id="SignUp_btn" value="SignUp"></input>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </div>
+
+  <div id="Login" class="Login" style="display: none">
+    <form>
+      <svg width="100%" height="40%">
+        <text x="50%" y="80%" text-anchor="middle">
+          Login
+        </text>
+      </svg>
+      <div>
+        <input type="text" placeholder="Username" id="Login_username" class="Login_username">
+        <br>
+        <input type="password" placeholder="Password" id="Login_password" class="Login_password">
+        <input class="patterns-button" type="button" value="Login" id="SumbitLogin" />
+      </div>
+    </form>
+  </div>
+  <div id="Configuration" style="display: none">
+    <form id="ConfigurationForm">
+        <svg width="100%" height="90%">
+          <text x="50%" y="80%" text-anchor="middle">
+            Level
+          </text>
+        </svg>
+      <div class="container" id="levelInDiv">
+        <div class="button-wrap">
+          <table class="settingsTable">
+            <tr> 
+              <td>
+                <input type="radio" name="difficulty" id="easy-button" class="hidden radio-label" checked>
+                <label for="easy-button" class="button-label">
+                  <h1>Easy</h1>
+                </label>
+              </td>
+              <td>
+                <input type="radio" name="difficulty" id="normal-button" class="hidden radio-label">
+                <label for="normal-button" class="button-label">
+                  <h1>Normal</h1>
+                </label>
+              </td>
+              <td>
+                <input type="radio" name="difficulty" id="hard-button" class="hidden radio-label">
+                <label for="hard-button" class="button-label">
+                  <h1>Hard</h1>
+                </label>
+              </td>
+            </tr>
+            </table>
+            <table class="settingsTable">
+            <tr>
+              <td>
+                <input type="radio" name="difficulty" id="Custom-button" class="hidden radio-label">
+                <label for="Custom-button" class="button-label">
+                  <h1>Custom Time</h1>
+                </label>
+              </td>
+              <td>
+                <input class="patterns-button" type="number" min="2" max="10" step="0.5" id="TimeCustom" placeholder="Min" value="2" style="display: none;"></input>
+              </td>
+              <td>
+                <input class="patterns-button" type="button" value="start" id="StartButton" />
+              </td>
+            </tr>
+          </table>
+      
+        </div>
+      </div>
+    </form>
+  </div>
+
+  <dialog id="settingsDialog" style="background-image: resourses/backgrounds/settingsBackground.png;">
+    <button type="button" class="CancelBtn" ><img src="resourses/logos/ExitLogo.png" onclick="closedialogs()"></button>
+    <svg width="100%" height="20%">
+      <text x="50%" y="75%" text-anchor="middle">
+        settings
+      </text>
+    </svg>
+    <table>
+      <tr>
+        <td>
+          <img src="resourses/logos/volumeLogo.png">
+        </td>
+        <td>
+          <input id="SliderSound" type="range" min="0" max="100" value="100" class="volume-range" id="myRange">
+        </td>
+      </tr>
+    </table>
+    <form id="Settings_Form">
+      <div style="text-align: center;">
+        <br><br>
+    <h1 style="color: #ffffff;font-style: italic;">choose key to shot</h1>
+    <script src="Keyboard.js"></script>
+    </div>
+    </form>
+  
+  </dialog>
+
+  <dialog id="AboutDialog">
+    <button type="button" class="CancelBtn" ><img src="resourses/logos/ExitLogo.png" onclick="closedialogs()"></button>
+    <svg width="100%" height="20%">
+      <text x="50%" y="75%" text-anchor="middle">
+        About
+      </text>
+    </svg>
+    <div id="AboutDiv">
+      <p >
+        Yuval Gorodissky and Noam Azulay. <br><br>
+
+          We used jQuery to let the user pick the date they want to enter for their birthday. <br>
+          All our pictures are designed by us in Midjourney AI and Photoshop. <br>
+          We implemented prizes that fall from eliminated enemies with a probability to fall off, and the user can collect them. <br>
+          We have three kinds of prizes: <br>
+          1. A banana that increases the monkey's shots by one banana. <br>
+          2. A timer that increases the time by three seconds. <br>
+          3. A life that adds one life to the user. <br>
+          <br>
+
+          We have four difficulties: <br>
+          1. Easy - 2 minutes, 3 lives started, 3 banana shots started, weak enemy. <br>
+          2. Normal - 1.5 minutes, 2 lives started, 2 banana shots started, normal enemy. <br>
+          3. Hard - 1 minute, 1 life started, 1 banana shot started, hard enemy. <br>
+          4. Custom - the user can choose the time they want to play with easy difficulty. <br>
+          <br>
+          in the settings menu, the user can change the volume of the game and the Fire button. <br><br>
+          Have fun! <br>
+
+      </p>
+  </dialog>
+
+  <div id="EndGame" style="display: none;">
+    <form id="EndGameForm">
+      <div class="patterns" id="EndGameInDiv">
+        <svg width="100%" height="10%">
+          <text id="WinloseTxt" x="50%" y="80%" text-anchor="middle">
+            
+          </text>
+        </svg>
+          </text>
+          <table id="lastscores" >
+            <thead> 
+  
+            <tr>
+                <th>Rank</th>
+                <th>Score</th>
+                <th>Time Elapsed</th>
+                <th>Level</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody >
+
+            </tbody>
+          </table>
+        
+        <table id="logs_btns">
+          <tr>
+            <td>
+              <input class="patterns-button" type="button" id="Restart_btn" value="Restart"></input>
+            </td>
+            <td>
+              <input class="patterns-button" type="button" id="Exit_btn" value="Exit"></input>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </form>
+  </div>
+
+
+  <div id="SignUp" class="Login" style="display: none">
+    <form id="SignUpForm">
+      <svg width="100%" height="25%">
+        <text x="50%" y="80%" text-anchor="middle">
+          Sign Up
+        </text>
+      </svg>
+      <div>
+        <table>
+          <tr>
+            <td>
+              <input type="text" placeholder="Username" id="SignUp_username" class="SignUp_username" required>
+            </td>
+            <td>
+              <input type="text" placeholder="Email" name="Email" id="SignUp_email" class="SignUp_email" required />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="password" placeholder="Password" id="SignUp_password" class="SignUp_password" required>
+            </td>
+            <td>
+              <input type="password" placeholder="verify" name="verify" id="SignUp_confirmPassword"
+                class="SignUp_password" required />
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <input type="text" placeholder="First Name" name="FirstName" id="SignUp_firstname" class="SignUp_username"
+                required />
+            </td>
+            <td>
+
+              <input type="text" placeholder="Last Name" name="LastName" id="SignUp_lastname" class="SignUp_username"
+                required />
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <input type="text" placeholder="BirthDay" name="BirthDay" id="SignUp_birthday" class="SignUp_birthday" onfocus="this.type='date'" 
+                required />
+            </td>
+            <td>
+              <input class="patterns-button" type="button" value="SignUp" id="SumbitSignUp"  />
+            </td>
+          </tr>
+      </div>
+      </table>
+
+    </form>
+  </div>
+</body>
+
+</html>
